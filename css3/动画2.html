@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<div>>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box{
+            height: 0;
+            width: 0;
+            border-bottom:100px solid brown;
+            border-top:100px solid cadetblue;
+            border-left:100px solid chocolate;
+            border-right:100px solid blue;
+            border-radius: 50%;
+            margin: 100px auto;
+            /* 调用动画  */
+            /* animation: rotate 1s ease 0s; */
+            animation-name: rotate;
+            animation-duration: 1s;
+            animation-timing-function: ease;
+            /* 无限次播放 */
+            animation-iteration-count: infinite;
+            /* 动画结束后逆播 */
+            animation-direction: alternate;
+            
+        }
+        /* 定义动画集 */
+        @keyframes rotate {
+            /* 定义开始状态 0%*/
+            from{
+                transform: rotateZ(0deg);
+            }
+            /* 定义结束状态 100% */
+            to{
+                transform: rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

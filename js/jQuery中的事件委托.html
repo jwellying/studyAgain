@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='father'>
+        <ul>
+            <li id='c1'>第一个</li>
+            <li id='c2'>第二个</li>
+            <li id='c3'>第三个</li>
+        </ul>
+    </div>
+</body>
+<script src='../模块化/入口文件/jquery-3.3.1.js'></script>
+<script>
+    //通过将事件绑定在父元素上
+    $('#father').on('click','#c1',function(){
+        console.log(1);
+    })
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //无参的匿名函数
+        var f1=function (){
+
+        }   
+        //等价于
+        var f2=()=>{
+
+        }
+        //有一个参数的匿名函数
+        var f3=(name)=>{
+            console.log(name);
+        }
+        //等价于
+        var f4=name=>{
+            console.log(name);
+        }
+        //有2个及以上的匿名函数
+        var f5=(name,age)=>{
+
+        }
+        //箭头函数和普通函数的区别
+        //1、函数内的this对象就是定义时所在的对象，而不是所调用的对象
+        //2、不可以当做构造函数，也就是说new方法时会报错
+        //3、不可以使用arguments变量，可以使用rest变量
+        //4、不可以使用yield命令，因此箭头函数不能用作Generator函数
+    </script>
+</body>
+</html>

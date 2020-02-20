@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head> 
+
+<body>
+    <script>
+        var obj={
+            age:18,
+            run:()=>{
+                setTimeout(()=>{
+                    console.log(this.age);//this指向window
+                },1000)
+            },
+            //更简写法
+            say(){
+                setTimeout(()=>{
+                    console.log(this.age);//this指向obj
+                },1000)
+            }
+        }  
+        obj.run();  
+        obj.say();
+        //箭头函数不能指定this的指向
+    </script>
+</body>
+</html>

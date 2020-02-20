@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>111</div>
+    <div>222</div>
+    <div>333</div>
+</body>
+<script>
+    (function(window){
+
+        function jQuery(selector){
+            return new jQuery.fn.init(selector);
+        }
+
+        jQuery.fn=jQuery.prototype={
+            constructor:jQuery,
+            init:function(selector){
+                let elements = document.querySelectorAll(selector);
+                for(let i=0;i<elements.length;i++){
+                    let ele = elements[i];
+                    this[i] = ele;
+                }
+                this.length=elements.length;
+            },
+            css(styleName,value){
+                for(let i=0;i<this.length;i++){
+                    this[i].style[styleName]=value;
+                }
+            }
+        }
+
+
+        //extend方法
+        jQuery.fn.extend=jQuery.extend=function(...args){
+            //定义两个变量
+            let source,target=[];
+            source=[...args];
+            //判断两种情况
+            if(this === jQuery){
+                target = args[0];
+                source.splice(0,1);
+            }else{
+                target = this;
+            }
+            //进行遍历拷贝
+            source.forEach(function(item){
+                Object.keys(item).forEach(function(key){
+                    target[key] = item[key];
+                })
+            });
+            return target;
+        }
+
+
+        jQuery.prototype.init.prototype = jQuery.fn;
+        window.$=window.jQuery=jQuery;
+    })(window)
+   
+    $('div').css("color",'red');
+    var p={};
+    var obj1={name:"tom"};
+    var obj2={name:'mike',gender:'男'};
+    var obj3={age:18};
+    $.extend(p,obj1,obj2,obj3);
+    $.fn.extend({
+        say(){
+
+        },
+        run(){
+
+        }
+    })
+</script>
+</html>

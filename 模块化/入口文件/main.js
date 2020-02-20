@@ -1,0 +1,11 @@
+//配置文件
+require.config({
+    baseUrl:'',
+    //常用的配置文件路径
+    paths:{
+        jquery:'jquery-3.3.1.js'
+    }
+})
+require([jquery],function($){
+    console.log('首页');
+})

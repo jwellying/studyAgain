@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .content{
+            height: 400px;
+            width: 400px;
+            border: 1px solid #ccc;
+            margin: 20px auto;
+        }
+        .box{
+            height: 200px;
+            width: 100px;
+            background-color: aqua;
+            /* 设置哪些属性参与到动画设定中 */
+            transition-property: all;
+            /* 设置动画过渡时间 */
+            transition-duration: 1s;
+            /* 设置动画延迟时间 */
+            transition-delay: 1s;
+            /* 动画速度设定 */
+            transition-timing-function: ease;
+            /* linear表示匀速 ease 慢速开始变快慢速结束 
+            ease-in慢速开始 ease-out慢速结束 case-in-out慢速开始结束 */
+        }
+        .box:hover{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="box"></div>
+    </div>
+</body>
+</html>

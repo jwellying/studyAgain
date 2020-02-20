@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //for of循环
+        // for(let s of 'foo'){
+        //     console.log(s);
+        // }
+        //for in循环(不仅可以遍历数组，也可以遍历对象，遍历对象时也可以遍历原型链)
+        var arr=[1,2,3,[1,2]];
+        Array.prototype.fuc=function(){};
+        arr.name="jack";
+        // for(let s in arr){
+        //     // console.log(`这是s: ${s}`);
+        //     console.log(`这是arr[s]: ${arr[s]}`);
+        // }
+        //再来看看for of(s的值就是数组的值，而不是key值)
+        for(let s of arr){
+            console.log(`s就是数组的值: ${s}`);
+        }
+        //forEach方法
+        arr.forEach(s => {
+            console.log(s);
+        });
+    </script>
+</body>
+</html>

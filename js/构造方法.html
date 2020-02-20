@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            // 构造函数
+            function Person(name,age,height){
+                this.name = name;
+                this.age = age;
+                this.height = height;
+            }
+            var person = new Person('jerry',18,180);
+            console.log(person);
+            // 判断一个实例是否为某构造函数的实例
+            console.log(person instanceof Person);  //true
+            
+    </script>
+</body>
+</html>

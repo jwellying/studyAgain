@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //网络状态判定
+        var state = window.navigator.onLine;
+        if(state){
+            alert("联网状态");
+        }else{
+            alert("断网状态");
+        }
+
+        window.ononline = function(){
+            alert("联网成功");
+        }
+
+        window.onoffline = function(){
+            alert("断网了");
+        }
+    </script>
+</body>
+</html>

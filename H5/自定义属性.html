@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义属性</title>
+</head>
+<body>
+    <div class="test" data-test="123">
+        <span>hhh</span>
+    </div>
+    <script>
+        //获取自定义属性
+        var div = document.querySelector(".test").dataset;
+        console.log(div.test);
+        //设置自定义属性
+        div.height = 100;
+        div.width = 100;
+    </script>
+</body>
+</html>

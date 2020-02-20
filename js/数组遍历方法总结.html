@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = ['hello world',1,2,3,{name:'tom'}];
+        //方法一、for循环
+        // for(let i = 0;i<arr.length;i++){
+        //     console.log(arr[i]);
+        // }
+        // //方法二、forEach循环
+        // arr.forEach(a=>{
+        //     console.log(a);
+        // })
+        //方法三、map循环
+        // var result = arr.map(function(item,index,array){
+        //     console.log(array[index]);
+        //     return item;
+        // })
+        // console.log(result);
+        // console.log(result==arr);  //false
+        //说明map遍历后创建了一个新的数组result
+        //方法四、for...of
+        // for(let key of arr){
+        //     console.log(key);
+        // }
+        //方法五、for...in
+        // for(let key in arr){
+        //     console.log(`这是key的值：${key}`);
+        //     console.log(`这是数组的值：${arr[key]}`);
+        // }
+        //方法六、filter
+        // var result1 = arr.filter(item=>{
+        //     return item.name;
+        // })
+        // var result2 = arr.filter(item=>{
+        //     return item>1;
+        // })
+        // console.log(result1);
+        // console.log(result2);
+        // console.log(result1==arr);//false
+        //说明filter方法返回了一个新的数组
+        //方法六、every方法
+        var result = arr.every(function(item,index,array){
+            return item>1;
+        })
+        console.log(result);//false
+        //如果数组内的值全部满足判断条件则返回true
+        //方法七、some方法
+        var result = arr.some(function(item,index,array){
+            return item>1;
+        })
+        console.log(result);//true
+        //部分满足就返回true
+        //方法八、keys、values、entries
+        for (let index of [{name:'tom',height:180}].keys()) {
+            console.log(index);
+        }
+        // name
+        // height
+        for (let elem of {name:'tom',height:180}.values()) {
+            console.log(elem);
+        }
+        // 'a'
+        // 'b'
+        for (let [index, elem] of {name:'tom',height:180}.entries()) {
+            console.log(index, elem);
+        }
+        // 0 "a"
+        // 1 "b"
+
+    </script>
+</body>
+</html>

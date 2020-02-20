@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var person = {
+            height:180,
+            name:'jerry',
+            hello:function(){
+                alert("My name is jerry!")
+            }
+        }
+        console.log(person.height);
+        console.log(person['name']);
+        // 设置属性
+        person.height = 185;
+        person.sex = 'male';
+        // 删除属性
+        delete person.height;
+        console.log(person);
+        // 清空对象
+        person={}; 
+        
+    </script>
+</body>
+</html>

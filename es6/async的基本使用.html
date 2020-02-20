@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn1(){
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    console.log('你好');
+                    resolve("结束");
+                },1000)
+            })
+        }
+        //普通promise的实现
+        // fn1().then(res=>{
+        //     console.log(res);
+        // })
+        //async的使用方法
+        //async的使用时异步函数的编写如同同步函数一般清晰可见
+        (async function(){
+            await fn1();
+            console.log("完成");
+            await fn1();
+            await fn1();
+        })()
+        console.log("他会第几个打印？");
+        
+    </script>
+</body>
+</html>

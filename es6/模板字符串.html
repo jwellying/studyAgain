@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //模板字符串就是字符串的一种新的体现
+        var s1=`hello`;
+        var s2='hello';    
+        //应用场景一：字符串拼接
+        var s3="1"+s1+"2"+s2+"3";
+        var s4=`1${s1}2${s2}3`;
+        console.log(s3);
+        console.log(s4);
+        //应用场景二：字符串换行
+        var s5=`<div>
+                    <p>
+                        <span>${s1}</span>    
+                    </P>
+            </div>`
+        console.log(s5);
+        
+    </script>
+</body>
+</html>

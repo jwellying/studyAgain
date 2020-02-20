@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>111</div>
+    <div>222</div>
+    <div>333</div>
+</body>
+<script>
+    (function(window){
+
+        function jQuery(selector){
+            return new jQuery.fn.init(selector);
+        }
+
+        jQuery.fn=jQuery.prototype={
+            constructor:jQuery,
+            init:function(selector){
+                let elements = document.querySelectorAll(selector);
+                for(let i=0;i<elements.length;i++){
+                    let ele = elements[i];
+                    this[i] = ele;
+                }
+                this.length=elements.length;
+            },
+            css(styleName,value){
+                for(let i=0;i<this.length;i++){
+                    this[i].style[styleName]=value;
+                }
+            }
+        }
+
+
+        //extend方法
+        jQuery.fn.extend=jQuery.extend=function(...args){
+            //定义两个变量
+            let source,target=[];
+            source=[...args];
+            //判断两种情况
+            if(args.length==1){
+                target = this;
+            }else{
+                target = args[0];
+                source.splice(0,1);
+            }
+            //进行遍历拷贝
+            source.forEach(function(item){
+                Object.keys(item).forEach(function(key){
+                    target[key] = item[key];
+                })
+            });
+            return target;
+        }
+
+        //添加工具类的方法
+        jQuery.extend({
+            each(obj,callback){
+                //判断两种情况（each遍历的对象可以是数组也可以是对象）
+                //数组又分为普通数组和伪数组（利用length属性判断数组）
+                if((length in obj)&&obj.length>=0){
+                    for(let i=0;i<obj.length;i++){
+                        callback.call(obj[i],i,obj[i]);
+                    }
+                }else{
+                    for(let key in obj){
+                        callback.call(obj[key],key,obj[key]);
+                    }
+                }
+            },
+            type(data){
+                var type = Object.prototype.toString.call(data);
+                return type.replace("[object","").replace("]","").toLowerCase();
+            }
+        })
+        //添加dom方法
+        jQuery.fn.extend({
+            each(callback){
+                jQuery.each(this,callback);
+            }
+        })
+        //当参数的长度为1的时候，由于target被指向this本身，方法被添加到原型上
+        //当参数的长度大于1时，被添加到第一个参数上
+        jQuery.prototype.init.prototype = jQuery.fn;
+        window.$=window.jQuery=jQuery;
+    })(window)
+    // $('div').call();
+    $.each([1,2,3],(i,v)=>{
+        console.log(i,v);
+    })
+    $.each({0:1,1:2,length:2},(i,v)=>{
+        console.log(i,v);
+    })
+    $.each({name:'tom',height:180},(i,v)=>{
+        console.log(i,v);
+    })
+    $('div').each((i,v)=>{
+        console.log(i);
+        console.log(v);
+        v.style.color='blue';
+    })
+    console.log($.type(1));//number
+    console.log($.type('string'));//string
+    console.log($.type([1,2]));//array
+    console.log($.type({name:'tom'}));//object
+    console.log($.type(null));//null
+    console.log($.type(Number));//function
+    console.log($.type(undefined));//undefined
+
+</script>
+</html>

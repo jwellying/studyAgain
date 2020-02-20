@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>111</div>
+    <div>222</div>
+    <div>333</div>
+</body>
+<script>
+    (function(window){
+
+        function jQuery(selector){
+            return new jQuery.prototype.init(selector);
+        }
+
+        jQuery.prototype={
+            constructor:jQuery,
+            init:function(selector){
+                let elements = document.querySelectorAll(selector);
+                for(let i=0;i<elements.length;i++){
+                    let ele = elements[i];
+                    this[i] = ele;
+                }
+                this.length=elements.length;
+            },
+            css(styleName,value){
+                for(let i=0;i<this.length;i++){
+                    this[i].style[styleName]=value;
+                }
+            }
+        }
+
+
+        // //extend方法
+        // jQuery.extend=function(...args){
+        //     //定义第一个对象
+        //     var target=args[0];
+        //     //遍历对象数组
+        //     for(let i=1;i<args.length;i++){
+        //         var arg = args[i];
+        //         for(let key in arg){
+        //             target[key]=arg[key];
+        //         }
+        //     }
+        // }
+
+        //改写方法(！！！返回值没有赋给第一个参数)
+        jQuery.extend=function(...args){
+            //定义第一个对象
+            var target=args[0];
+            //遍历对象数组
+            for(let i=1;i<args.length;i++){
+                var arg = args[i];
+                target={...arg,...target};
+            }
+            return target;
+        }
+
+
+        jQuery.prototype.init.prototype = jQuery.prototype;
+        window.$=window.jQuery=jQuery;
+    })(window)
+   
+    $('div').css("color",'red');
+    var p={sex:489};
+    var obj1={name:"tom"};
+    var obj2={name:'mike',gender:'男'};
+    var obj3={age:18};
+    $.extend(p,obj1,obj2,obj3);
+</script>
+</html>

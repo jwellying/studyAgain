@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas</title>
+    <style>
+        canvas{
+            border: 1px solid #cc00cc;
+        }
+    </style>
+</head>
+<body>
+    <!-- 必须通过属性设置的height和width -->
+    <canvas height="400" width="600"></canvas>
+    <script>
+        //获取标签
+        var canvas = document.querySelector("canvas");
+        //获取绘图上下文
+        var ctx = canvas.getContext("2d");
+        //找到落笔点
+        ctx.moveTo(100,100);
+        //连线
+        ctx.lineTo(200,200);
+        //描边
+        ctx.stroke();
+    </script>
+</body>
+</html>

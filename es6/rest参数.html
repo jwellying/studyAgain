@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function fn(){
+            //arguments变量是一个函数内部的局部变量
+            console.log(arguments.length);
+        }   
+        fn(1,2,3);
+        fn("a","b");
+        //但是在箭头函数中不能使用arguments变量
+        //于是rest参数应运而生
+        function f1(...args){
+            console.log(args);
+        }
+        f1(1,2,3);
+        //补充知识：判定是否为数组的几种方式
+        var array=[1,2,3];
+        console.log(array instanceof Array); //true
+        console.log(Object.prototype.toString.call(array)); //[Object Array]
+        console.log(Array.isArray(array)); //true
+        //typeof方法只能用于判断数字、字符串、布尔值、null、undefined以及函数
+        //而Object.prototype.toString.call()方法
+        //数字 [object Number]
+        //字符串 [object String]
+        //布尔值 [object Boolean]
+        //null [object Null]
+        //undefined [object Undefined]
+        //数组 [object Array]
+        //函数 [object Function]
+    </script>
+    
+</body>
+</html>

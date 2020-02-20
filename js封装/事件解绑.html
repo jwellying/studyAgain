@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        222
+    </div>
+</body>
+<script>
+    // var div = document.getElementsByTagName('div');
+    // console.log(div);
+    var div=document.querySelector("div");
+    div.addEventListener("click",function f1(){
+        console.log(1);
+        //事件的解绑
+        //使用arguments.callee方法使得_this指向函数本身
+        //但在es5之后该方法不可用
+        // var _this = arguments.callee; 
+        // div.removeEventListener('click',_this);
+        //新的解决方法
+        //给函数指定名称且该方法智能在函数体内使用
+        div.removeEventListener('click',f1);
+    })
+
+
+
+    // var div=document.querySelector("div");
+    // console.log(div);
+    
+    
+    //希望让事件只触发一次
+    // div.addEventListener("click",function f1(){
+    //     //f1可以在函数体内部随意访问
+    //     //-->f1指向当前函数本身  === arguments.callee
+
+    //     alert("1");
+
+    //     //a、对事件解绑
+    //     // var _this=arguments.callee; //当前函数本身
+
+    //     // div.removeEventListener("click",_this);
+
+    //     //b、由于ES5严格模式的诞生，arguments.callee被禁用了，
+    //     div.removeEventListener("click",f1);
+    // });
+</script>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            color: aqua;
+            font-size: 20px;
+        }
+        span{
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div style="display: none;">111</div>
+    <div>222</div>
+    <div>333</div>
+    <span>44</span>
+    <h1>hh</h1>
+</body>
+<script>
+    (function(window){
+
+        function jQuery(selector){
+            return new jQuery.fn.init(selector);
+        }
+
+        jQuery.fn=jQuery.prototype={
+            constructor:jQuery,
+            init:function(selector){
+                //如果参数是dom对象
+                if(jQuery.type(selector)==='string'){
+                    let elements = document.querySelectorAll(selector);
+                    for(let i=0;i<elements.length;i++){
+                        let ele = elements[i];
+                        this[i] = ele;
+                    }
+                    this.length=elements.length;
+                }else if(selector.nodeType === 1){
+                    this[0] = selector;
+                    this.length=1;
+                }
+                
+               
+            },
+            
+        }
+
+
+        //extend方法
+        jQuery.fn.extend=jQuery.extend=function(...args){
+            //定义两个变量
+            let source,target=[];
+            source=[...args];
+            //判断两种情况
+            if(args.length==1){
+                target = this;
+            }else{
+                target = args[0];
+                source.splice(0,1);
+            }
+            //进行遍历拷贝
+            source.forEach(function(item){
+                Object.keys(item).forEach(function(key){
+                    target[key] = item[key];
+                })
+            });
+            return target;
+        }
+
+        //添加工具类的方法
+        jQuery.extend({
+            each(obj,callback){
+                //判断两种情况（each遍历的对象可以是数组也可以是对象）
+                //数组又分为普通数组和伪数组（利用length属性判断数组）
+                if((length in obj)&&obj.length>=0){
+                    for(let i=0;i<obj.length;i++){
+                        callback.call(obj[i],i,obj[i]);
+                    }
+                }else{
+                    for(let key in obj){
+                        callback.call(obj[key],key,obj[key]);
+                    }
+                }
+            },
+            type(data){
+                var type = Object.prototype.toString.call(data);
+                return type.replace("[object ","").replace("]","").toLowerCase();
+            }
+        })
+
+
+        //css方法的封装
+        jQuery.fn.extend({
+            css(...args){
+                var args1=args[0];
+                var args2=args[1];
+                //先分为两种情况：参数个数为1，参数个数大于1
+                //参数个数为1
+                //1、获取样式$("div").css("color")  只能获取到第一个div的颜色
+                //2、设置样式
+                //      $("div").css("color","red") 设置每一个div的字体颜色
+                //      $("div").css({ color:"red","backgroundColor","blue" })
+                if(args.length===1){
+                    //1、获取样式
+                    // console.log(this);
+                    if(jQuery.type(args1)==='string'){
+                        let dom = this[0];
+                        var styleObj = window.getComputedStyle(dom);
+                        return styleObj[args1];
+                    }else{
+                        //args1={color:"red","backgroundColor","blue"}
+                        //首先遍历dom结点
+                        // console.log(this);
+                        //dom结点调用的each方法
+                        this.each(function(){
+                            jQuery.each(args1,(key,value)=>{
+                                this.style[key] = value;
+                            })                            
+                        })
+                    }
+                }else{
+                    //参数个数为2
+                    //$("span").css("fontSize","30px")
+                    this.each(function(){
+                            this.style[args1] = args2;                           
+                        })                    
+                }
+            },
+            show(){
+                this.css('display','block');
+            },
+            hide(){
+                // console.log(this);
+                this.css('display','none');
+            },
+            toggle(){
+                this.each(function(item,value){
+                    if(jQuery(this).css('display')=='none'){
+                        jQuery(this).css('display','block')
+                    }else{
+                        jQuery(this).css('display','none')
+                    }                   
+                })
+            }
+        })
+
+        //添加dom方法
+        jQuery.fn.extend({
+            each(callback){
+                jQuery.each(this,callback);
+            }
+        })
+        //当参数的长度为1的时候，由于target被指向this本身，方法被添加到原型上
+        //当参数的长度大于1时，被添加到第一个参数上
+        jQuery.prototype.init.prototype = jQuery.fn;
+        window.$=window.jQuery=jQuery;
+    })(window)
+    // $('div').call();
+    // $.each([1,2,3],(i,v)=>{
+    //     console.log(i,v);
+    // })
+    // $.each({0:1,1:2,length:2},(i,v)=>{
+    //     console.log(i,v);
+    // })
+    // $.each({name:'tom',height:180},(i,v)=>{
+    //     console.log(i,v);
+    // })
+    // $('div').each((i,v)=>{
+    //     console.log(i);
+    //     console.log(v);
+    //     v.style.color='blue';
+    // })
+    // console.log($.type(1));//number
+    // console.log($.type('string'));//string
+    // console.log($.type([1,2]));//array
+    // console.log($.type({name:'tom'}));//object
+    // console.log($.type(null));//null
+    // console.log($.type(Number));//function
+    // console.log($.type(undefined));//undefined
+
+    // $('span').css('color');
+    $('div').css('color');
+    $("div").css({color:"red",backgroundColor:"blue" });
+    $("span").css("fontSize","30px");
+        //※※拓展实现链式（return this）
+    // $('div').hide();
+    // $('div').show();
+</script>
+</html>

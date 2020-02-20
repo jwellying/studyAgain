@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var obj={
+            age:18,
+            height:180,
+            gender:"男"
+        }
+        //前后数据类型要对应    
+        var {age,height,gender}=obj;
+        var [a,b,c]=[1,2,3];
+        //解构赋值的意义(函数的形参使用解构自变量)
+        //创建了三个形参，值来自于实参
+        function fn({age,height,gender}){
+            console.log(age);
+        }
+        fn({
+            age:18,
+            height:180,
+            gender:"男"
+        })
+        //解构赋值的其他应用
+        var person={name:"张三",heighth:180};
+        var {name:userName,heighth:userHeight}=person;
+    </script>
+</body>
+</html>

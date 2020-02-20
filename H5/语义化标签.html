@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>语义化标签</title>
+    </head>
+    <body>
+        <!-- 语义化标签 -->
+        <header>这是一个头部标签</header>
+        <nav>这是一个导航标签</nav>
+        <article>这是一个内容标签</article>
+        <sction>这是一个块级标签</sction>
+        <aside>这是一个侧边标签</aside>
+        <footer>这是一个底部标签</footer>
+        <!-- 音频与视频 -->
+        <audio src="../static/f(x) - 첫 사랑니.mp3" controls="controls" autoplay="autoplay"></audio>
+        <video src="#"></video>
+        <!-- 新的表单控件 -->
+        <!-- 输入的信息若不符合，会有相应的提示信息 -->
+        <form>
+            <ul>
+                <li>颜色<input type="color"> </li>
+                <li>日期<input type="date"></li>
+                <li>时间<input type="time"></li>
+                <li>月份<input type="month"></li>
+                <li>时间<input type="week"></li>
+                <li>邮箱
+                    <input type="email">
+                    <input type="submit">
+                </li>
+                <li>数字<input type="number"></li>
+                <li>链接<input type="url"></li>
+                <li>手机<input type="tel"></li>
+                <li>搜索框<input type="search"></li>
+            </ul>
+        </form>
+        <!-- 1. process进度条 -->
+        <!-- <progress  value="0"></progress> -->
+        <!-- 2. datalist 建议列表 -->
+        <datalist id="lunchList">
+            <option>京酱肉丝</option>
+            <option>锅包肉</option>
+            <option>鱼香肉丝</option>
+            <option>青椒肉丝</option>
+            <option>地三鲜</option>
+        </datalist>
+        <input type="text" name="lunch" list="lunchList"/>
+        <!-- 3. meter 度量衡/刻度尺/, 用于标示一个所处的范围 -->
+        <!-- <meter min="可取的最小值" max="可取的最大值" low="合理的下限值" high="合理的上限值" optimum="最佳值" value="当前值" ></meter> -->
+        <canvas id="mycanvas"></canvas>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+let arr = [
+    ["小明","18"],
+    ["小刚","18"]
+];
+let newArr = arr.flatMap((item)=>{
+    item = item.filter((item,index)=>{
+        return index == 0;
+    });
+    return item;
+});
+console.log(newArr);
+</script>    
+</body>
+</html>

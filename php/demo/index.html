@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="./js/jquery-3.3.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script type="text/template">
+    
+</script>
+<body>
+    <input type="text" name="查询城市" placeholder="请输入城市名称" class="input">
+    <input type="submit" value="查询" class="btn">
+<script>
+    
+    
+    $('.btn').on('click',function(){
+        var city = $('.input').val();
+        // console.log(city);
+        $.ajax({
+            type:"get",
+            url:"http://v.juhe.cn/weather/index",
+            //垃圾接口不支持jsonp
+            dataType:'jsonp',
+            data:{
+                appkey:"3d272c62f58de6a354da1a8488865946",
+                cityname:city,
+                dtype:'json',
+                formData:1
+            },
+            success:function(res){
+                console.log(res);
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+    })
+</script>
+</body>
+</html>

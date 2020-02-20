@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //promise函数的基本用法
+        function promise(){
+            return new Promise(resolve=>{
+                setTimeout(()=>{
+                    console.log("你好");
+                    //通过resolve告诉外界当前异步操作完成
+                    resolve();
+                },1000)
+            })
+        } 
+        //但是回调地狱并没有消除
+        promise().then(()=>{
+            console.log("下一步");
+            promise().then(()=>{
+                console.log("第二步完成");
+            })
+        })
+    </script>
+</body>
+</html>

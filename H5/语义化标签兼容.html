@@ -1,0 +1,24 @@
+<html >
+    <head>
+        <meta charset="utf-8">
+        <title>语义化标签兼容</title>
+        <style>
+            nav{
+                height: 200px;
+                background-color: aqua;
+            }
+        </style>
+        <script>
+            // document.createElement("nav");
+        </script>
+        <!-- 不需要记忆，相应使用时只需进行查阅 -->
+        [if lte IE 8]
+           <script src="#"></script> 
+        [end if]
+    
+        
+    </head>
+    <body>
+        <nav>语义化标签</nav>
+    </body>
+</html>

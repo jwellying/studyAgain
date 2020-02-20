@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var person1={name:"tom",height:180,gender:"男"};
+        var person2={...person1,name:"jack"};
+        var person3={...person1,...person2,name:"lily",gender:"女"};
+        console.log(person2);
+        console.log(person3);
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text">
+        function fn4(f){
+            f();
+            // var name = 'mike';
+        }
+        fn4(function(){
+            // var name = 'jack';
+            console.log(name);
+            //报错
+            //分析age变量
+            //1.查找当前作用域，无法找到
+            //2.查找上一级作用域，上一级作用域是谁呢
+            //3.上一级作用域不是看谁调用它，而是看它在哪里编写
+        })
+    </script>
+    <script type="text">
+        var name = 'tom';
+        var obj={
+            name:'jack',
+            say(){
+                console.log(this.name);
+            }
+        }
+        var f1=function(){
+            var obj2={
+                name:'mike',
+                say(){
+                    console.log(this.name);
+                }
+            }
+            obj2.say();
+        }
+    </script>
+    <script>
+        var name="jack";
+        var obj={
+            // name:"mike",
+            say(){
+                console.log(name);
+                
+            }
+        }
+    </script>
+</body>
+</html>

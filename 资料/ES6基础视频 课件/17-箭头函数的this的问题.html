@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// document.onclick = ()=>{
+//     console.log(this);
+// };
+
+// document.onclick = function(){
+//     let fn = ()=>{
+//         console.log(this);
+//     };
+//     // function fn(){
+//     //     console.log(this);
+//     // }
+//     fn();
+// }
+
+let fn;
+let fn2 = function(){
+    console.log(this); 
+    fn = ()=>{
+        console.log(this);
+    }
+}
+fn2 = fn2.bind(document.body);
+fn2();
+fn();
+
+/*
+    箭头函数本身没有 this ，调用箭头函数的 this 时，指向是其声明时 所在的作用域的this;
+*/
+</script>    
+</body>
+</html>
