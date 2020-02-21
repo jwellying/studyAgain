@@ -1,0 +1,30 @@
+//获取express
+const express = require('express');
+//创建服务器
+let server = express();
+//监听端口
+server.listen(8080,function(){
+    console.log('服务器启动在8080端口');
+})
+//use的使用
+//use作为一种中间件（执行于请求与响应之间）
+//无论请求或者响应是否成功都会被执行
+//分为两种中间件：应用中间件和路由中间件
+//next的使用使得当前use执行完可以自动跳到下一个use
+//还可配置一个简单的路由
+server.use('/sucai',(req,res,next)=>{
+    console.log('今天吃白菜');
+    next();
+})
+server.use('/sucai',(req,res,next)=>{
+    console.log('今天吃胡萝卜');
+    next();
+})
+server.use('/huncai',(req,res,next)=>{
+    console.log('今天吃猪肉');
+    next();
+})
+server.use('/huncai',(req,res,next)=>{
+    console.log('今天吃牛肉');
+    next();
+})
