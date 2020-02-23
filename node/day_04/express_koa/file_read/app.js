@@ -5,9 +5,9 @@ const fs = require('fs');
 //创建服务器
 let server = new koa();
 
-function readFileAsync(){
-    return new Promise((reject,resolve)=>{
-        fs.readFile('./views/index.html',(err,data)=>{
+function asyncReadFile(){
+    return new Promise(function(resolve,reject){
+        fs.readFile('./index.html',(err,data)=>{
             if(err){ 
                 //失败返回err
                 reject(err);
@@ -28,10 +28,10 @@ server.use( async (ctx)=>{
             //调用封装函数
             // console.log('hhh');
             
-            let data =await readFileAsync();
-            console.log(data.toString());
+            let data =await asyncReadFile();
+            // console.log(data.toString());
             ctx.set('content-type','text/html;charset:utf-8')
-            ctx.body = data.toString();
+            ctx.body = data;
     
         }else{
             ctx.body = 'err';
@@ -42,6 +42,6 @@ server.use( async (ctx)=>{
 }
 })
 //监听端口
-server.listen(8080,function(){
-    console.log('服务器启动在8080端口');
+server.listen(8888,function(){
+    console.log('服务器启动在8888端口');
 })
