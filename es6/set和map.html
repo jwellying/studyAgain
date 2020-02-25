@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Map和Set是ES6标准新增的数据类型
+        //map方法的使用(map使用于对象的快速实例化)
+        let arr=[
+            ["a",1],
+            ["b",2]
+        ];
+        let arr2 = new Map(arr);
+        console.log(arr2); //a->1,b->2
+        console.log(arr2.get("a"));//1
+        arr2.set("b",5);//b->5
+        arr2.set("c",4);
+        console.log(arr2);
+        console.log(arr2.has("a"));//true
+        arr2.delete("b");
+
+        //set方法的使用
+        var s = new Set([1, 2, 3, 3, '3']);
+        console.log(s);//重复元素会被过滤
+        //set方法
+        //delete方法
+        
+    </script>
+</body>
+</html>

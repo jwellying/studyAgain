@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        //全局过滤器
+        Vue.filter('myReverse',function(value){
+            return value.split('').reverse().join('')
+        })
+
+
+        //入口组件
+        var App = {
+            data(){
+                return{
+                    price:0,
+                    msg:'hello filter'
+                }
+            },
+            template:`
+            <div>
+                <input type="number" v-model="price">
+                <p>{{price | money}}</p> 
+                <h2>{{msg | myReverse}}</h2>
+            </div>
+            `,
+            filters:{
+                money:function(value){
+                    return '￥'+value;
+                }
+            }
+        }
+        //实例
+        var app = new Vue({
+            el:'#app',
+            template:`<App/>`,
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>

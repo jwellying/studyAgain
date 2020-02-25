@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .father{
+            background-color: cadetblue;
+            height: 180px;
+        }
+        .child{
+            background-color: chocolate;
+            height: 80px;
+            width: 80px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        //子组件一定要写在父组件的上面！！！
+           var childComponent = {
+            template:`
+                <div>
+                    <p>我是子组件</p>
+                    <ul>
+                        <li v-for="(value,index) in obj">
+                            {{value.name}}--{{value.fav}}    
+                        </li>
+                    </ul>
+                </div>
+            `,
+            props:['objs']
+        }
+
+        var fatherComponent = {
+            template:`
+                <div>
+                    <p>我是父组件</p>
+                    <child-component :obj="objs"></child-component>
+                </div>
+            `,
+            data(){
+                return{
+                    obj:[
+                        {name:'jack',fav:'games'},
+                        {name:'rose',fav:'movies'}
+                    ]
+                }
+            },
+            components:{
+                childComponent
+            }
+        }
+
+     
+
+
+        var app = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <father-component></father-component>
+                </div>
+            `,
+            data(){
+                return{
+                    
+                }
+            },
+            components:{
+                fatherComponent
+            }
+        })
+    </script>
+</body>
+</html>

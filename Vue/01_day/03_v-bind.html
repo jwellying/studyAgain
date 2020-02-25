@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .now{
+            color: aqua;
+        }
+        .active{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        var wm = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <div class="now" v-bind:class="{active:isChange}">我会变色</div>
+                    <button v-on:click="change">巴啦啦变</button>
+                </div>
+            `,
+            data(){
+                return{
+                    isChange:true
+                }
+            },
+            methods:{
+                change(){
+                    this.isChange = !this.isChange;
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

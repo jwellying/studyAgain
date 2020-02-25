@@ -8,19 +8,19 @@
 </head>
 <body>
 <script>
-// document.onclick = ()=>{
-//     console.log(this);
-// };
-
-// document.onclick = function(){
-//     let fn = ()=>{
-//         console.log(this);
-//     };
-//     // function fn(){
-//     //     console.log(this);
-//     // }
-//     fn();
-// }
+document.onclick = ()=>{
+    console.log(this);
+};
+//指向function本身
+document.onclick = function(){
+    let fn = ()=>{
+        console.log(this);
+    };
+    // function fn(){
+    //     console.log(this);
+    // }
+    fn();
+}
 
 let fn;
 let fn2 = function(){
@@ -29,6 +29,8 @@ let fn2 = function(){
         console.log(this);
     }
 }
+//fn2的this被bind在body
+//fn因为是箭头函数，this指向同fn2
 fn2 = fn2.bind(document.body);
 fn2();
 fn();

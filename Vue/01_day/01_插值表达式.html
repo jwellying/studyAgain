@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+
+    <SCript src="../node_modules/vue/dist/vue.js"></SCript>
+    <SCript>
+        //创建一个vue实例
+        //vue 使用{{}}作为插值表达式的模板语法
+        var app = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <h1>{{msg}}</h1>
+                    <h2>{{ {name:'jack'} }}</h2> 这里有一个坑，两边要加空格
+                    <h3>{{1===2}}</h3>
+                    <h4>{{1>2?'真的':'假的'}}</h4>
+                </div>
+            `,
+            data(){
+                return{
+                    msg:'hhh'
+                }
+            }
+        })
+    </SCript>
+</body>
+</html>

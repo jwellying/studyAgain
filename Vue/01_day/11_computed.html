@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            padding: 15px 5px;
+            font-size: 18px;
+            /* background-color: khaki; */
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        audio{
+            margin: auto;
+        }
+        .play{
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <audio :src='getCurSong' autoplay controls></audio>
+            <ul>
+                <li v-for="(value,index) in musicList" :class='{play:curIndex===index}' @click="play(index)">
+                    {{index}}——{{value.name}}
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        var musicList = [
+            {id:1,name:'初智齿--f(x)',src:'../static/f(x) - 첫 사랑니.mp3'},
+            {id:2,name:'I Miss You',src:'../static/MAMAMOO (마마무) - I Miss You.mp3'},
+            {id:3,name:'莫欺少年穷 ',src:'../static/九连真人 - 莫欺少年穷 (Live).mp3'},
+            {id:4,name:'男孩别哭',src:'../static/海龟先生 - 男孩别哭 (Live).mp3'}
+        ]
+
+        //构建实例
+        var app = new Vue({
+            el:'#app',
+            data(){
+                return{
+
+                    musicList:musicList,
+                    curIndex:0
+                }
+            },
+            computed:{
+                getCurSong:function(){
+                    // console.log(this.musicList[curIndex].src);
+                    
+                    return this.musicList[this.curIndex].src;
+                }
+            },
+            methods:{
+                play(index){
+                    // console.log(this.id);
+                    this.curIndex = index;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

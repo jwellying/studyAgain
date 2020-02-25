@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" oninput="getValue();"> -->
+        <input type="text" v-model="msg">
+        <p>{{msg}}</p> 
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            template:'',
+            data:{
+                msg:'双向数据绑定'
+            }
+        })
+    </script>
+    <!-- <script>
+        var input = document.querySelector('input');
+        console.log(input);
+        
+        function getValue(){
+            console.log(input.value);
+        }
+        
+    </script> -->
+</body>
+</html>

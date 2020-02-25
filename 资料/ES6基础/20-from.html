@@ -17,12 +17,14 @@
 {
     let lis = document.querySelectorAll("#list li");
     let arr=[];
-    // lis = Array.from(lis,function(item,index){
-    //     console.log(item,index,this);
-    //     return index;
-    // },arr);
-    lis = [...lis];
-    console.log(lis);
+    lis = Array.from(lis,function(item,index){
+        console.log(item,index,this);
+        return index;
+    },arr);
+    console.log(arr);
+    
+    // lis = [...lis];
+    // console.log(lis);
 }
 
 </script>    

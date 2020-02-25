@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+    </div>
+    <SCript src="../node_modules/vue/dist/vue.js"></SCript>
+    <SCript>
+        //创建一个vue实例
+        //当模板里面有多个div时一定要用一个根元素包裹起来
+        var app = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <div v-text="msg"></div>
+                    <div v-html="msg2"></div>
+                    <div v-if="msg3">只有在真的时候你才可以看到我</div>
+                    <div v-show="isShow">show</div>
+                    <div v-if="Math.random()>0.5">大于0.5</div>
+                    <div v-else>小于0.5</div>
+                    <div v-for="todo in todos">{{todo.name}}</div>
+                    <ul>
+                        <li v-for="(value,key) in obj">
+                            {{key}}=={{value}}
+                        </li>
+                    </ul>
+                </div>
+            `,
+            data(){
+                return{
+                    msg:'hhh',
+                    msg2:"<h2>哈哈哈</h2>",
+                    msg3:false,
+                    todos:[
+                        {name:'jack'},
+                        {name:'rose'},
+                        {name:'lily'}
+                    ],
+                    isShow:false,
+                    obj:{
+                        name:'jack',
+                        age:28,
+                        gender:'男'
+                    }
+                }
+            }
+        })
+    </SCript>
+</body>
+</html>
