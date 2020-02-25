@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <!-- 通过子传父，父传子来实现 -->
+    <script type="html/text">
+        var childOne = {
+            template:`
+                <div>
+                    <div>我是第一个子组件</div>
+                    <button @click='callTwo'>呼叫二号</button>
+                </div>
+            `,
+            methods:{
+                callTwo(){
+                    this.$emit('callTwo','callTwo');
+                }
+            }
+        }
+
+        var childTwo = {
+            template:`
+                <div>我是第二个子组件</div>
+            `
+        }
+
+        var App = {
+            template:`
+               <div>
+                    <childOne @callTwo='two'></childOne> 
+                    <childTwo v-if="isShow"></childTwo>
+                </div>
+            `,
+            data(){
+                return{
+                    isShow:false
+                }
+            },
+            methods:{
+                two(data){
+                    console.log(data);
+                    if(data==='callTwo'){
+                        this.isShow = true;
+                    }
+                }
+            },
+            components:{
+                childOne,
+                childTwo
+            }
+        }
+
+        new Vue({
+            el:'#app',
+            template:`
+                <App></App>
+            `,
+            components:{
+                App
+            }
+        })
+    </script>
+    <!-- 通过eventBus来实现(好像只能通过import) -->
+    <!-- <script>
+        var childOne = {
+            template:`
+                <div>
+                    <div>我是第一个子组件</div>
+                    <button @click='callTwo'>呼叫二号</button>
+                </div>
+            `,
+            methods:{
+                callTwo(){
+                    eventBus.$emit('callTwo','callTwo');
+                }
+            }
+        }
+
+        var childTwo = {
+            template:`
+                <div>我是第二个子组件</div>
+            `,
+            created(){
+                eventBus.$on('callTwo',(data)=>{
+                    console.log(data);
+                })
+            }
+        }
+
+        var App = {
+            template:`
+               <div>
+                    <childOne></childOne> 
+                    <childTwo></childTwo>
+                </div>
+            `,
+            components:{
+                childOne,
+                childTwo
+            }
+        }
+
+        new Vue({
+            el:'#app',
+            template:`
+                <App></App>
+            `,
+            components:{
+                App
+            }
+        })
+    </script> -->
+</body>
+</html>

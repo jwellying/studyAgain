@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        Vue.component('three',{
+            template:`<div>three</div>`,
+        })
+
+        var App = {
+            template:`
+                <div>
+                    <div ref="one">one</div>
+                    <div ref="two">two</div>
+                    <three ref="three"></three>
+                </div>
+            `,
+            mounted(){
+                //通过$refs属性可以获取到dom结点
+                //而如果该标签是一个组件的话，返回的则是一个组件对象
+                console.log(this.$refs.one);
+                console.log(this.$refs.two);
+                console.log(this.$refs.three);
+
+                
+            }
+        }
+
+        new Vue({
+            el:'#app',
+            template:'<App></App>',
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>

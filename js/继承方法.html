@@ -9,25 +9,25 @@
 <body>
     <script>
         //继承方法一
-        function Person(){}
-        Person.prototype.name = 'Tom';
-        var person = new Person();
-        console.log(person.name);
-        //继承方法二（原型链继承）
-        function Cat(){};
-        Cat.prototype={
-            a1:function(){
-                alert(1);
-            },
-            a2:function(){
-                alert(2);
-            },
-            a3:function(){
-                alert(3);
-            }
-        }
-        var cat = new Cat();
-        console.log(cat.a1);
+        // function Person(){}
+        // Person.prototype.name = 'Tom';
+        // var person = new Person();
+        // console.log(person.name);
+        // //继承方法二（原型链继承）
+        // function Cat(){};
+        // Cat.prototype={
+        //     a1:function(){
+        //         alert(1);
+        //     },
+        //     a2:function(){
+        //         alert(2);
+        //     },
+        //     a3:function(){
+        //         alert(3);
+        //     }
+        // }
+        // var cat = new Cat();
+        // console.log(cat.a1);
         //继承方法三（拷贝继承）
         var o1={
             age:12,
@@ -48,6 +48,8 @@
         extend(o3,o1);
         o3.name = 'jack';
         console.log(o3);
+        console.log(o1);
+        
         //拷贝封装
         function extend(target,source){
             for(var key in source){
@@ -57,8 +59,8 @@
         }
         //继承方法四（原型式继承）
         //1.创建一个纯洁的对象,没有任何属性
-        var o4 = Object.create(null);
-        console.log(o4);
+        // var o4 = Object.create(null);
+        // console.log(o4);
         //2.通过父类继承
         var o5 = Object.create(o1);
         console.log(o5);
@@ -70,10 +72,10 @@
             this.age = age
         }
 
-        // function Person(name,gender,age,say){
-        //     //报错name，gender，age属性变成window的属性
-        //     Animal(name,gender,age);
-        //     this.say = say;
+        function Person(name,gender,age,say){
+            //报错name，gender，age属性变成window的属性
+            Animal(name,gender,age);
+            this.say = say;
         // }
         function Person(name,gender,age,say){
             //报错name，gender，age属性变成window的属性

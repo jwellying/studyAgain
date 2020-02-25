@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+//双向绑定的实现
+//三个步骤
+//（1）将vue中的data中的内容绑定到输入文本框和文本节点中
+//（2）当文本框的内容改变时，vue实例中的data也同时发生改变
+//（3）当data中的内容发生改变时，输入框及文本节点的内容也发生变化
+//首先第一步
+//通过DocuemntFragment劫持结点，通过appendchild方法每一次劫持一个结点
+//直到结点为0,劫持到的结点放在一个对象里面，在向碎片化文档中添加节点时，
+//然后遍历对象看看有没有如果有input绑定v-model属性或者有{{ xxx }}的文本节点出现，
+//就进行内容替换，替换为vm实例中的data中的内容
+//第二步
+//实现一个响应式监听属性的函数Object.defineProperty，一旦有赋新值就发生变化
+//我们通过事件监听器keyup，input等，来获取到最新的value，
+//然后通过Object.defineProperty将获取的最新的value，赋值给实例vm的text，
+//我们把vm实例中的data下的text通过Object.defineProperty设置为访问器属性，
+//这样给vm.text赋值，就触发了set。
+
+
+
+</body>
+</html>

@@ -9,43 +9,43 @@
 <body>
     <script>
         //第一种:函数调用
-        var age=18;
-        var p={
-            age:15,
-            say:function(){
-                console.log(this.age);
-            }
-        }
-        var f1=p.say;
-        f1();    //18
-        //f1()属于函数调用，函数内部的this指向window
-        //第二种：方法调用
-        var age=18;
-        var p={
-            age:15,
-            say:function(){
-                console.log(this.age);
-            }
-        }
-        p.say(); //15
-        //p.say()属于方法调用，函数内部的this指向实例p
-        //另一例子
-        function run(){
-            console.log(this.speed);
-        }
-        var speed=50;
-        var tom={
-            speed:100,
-            running:run
-        }
-        tom.running();
-        //方法调用时this->tom对象
-        //通过new方法来调用的就是构造函数方法调用
-        function fn(name){
-            this.name=name;
-        }
-        var f1=new fn("tom");
-        console.log(f1.name);//this指向实例f1
+        // var age=18;
+        // var p={
+        //     age:15,
+        //     say:function(){
+        //         console.log(this.age);
+        //     }
+        // }
+        // var f1=p.say;
+        // f1();    //18
+        // //f1()属于函数调用，函数内部的this指向window
+        // //第二种：方法调用
+        // var age=18;
+        // var p={
+        //     age:15,
+        //     say:function(){
+        //         console.log(this.age);
+        //     }
+        // }
+        // p.say(); //15
+        // //p.say()属于方法调用，函数内部的this指向实例p
+        // //另一例子
+        // function run(){
+        //     console.log(this.speed);
+        // }
+        // var speed=50;
+        // var tom={
+        //     speed:100,
+        //     running:run
+        // }
+        // tom.running();
+        // //方法调用时this->tom对象
+        // //通过new方法来调用的就是构造函数方法调用
+        // function fn(name){
+        //     this.name=name;
+        // }
+        // var f1=new fn("tom");
+        // console.log(f1.name);//this指向实例f1
         //更复杂的例子
         function Jquery(){
             var _init=Jquery.prototype.init;

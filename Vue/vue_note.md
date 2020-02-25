@@ -170,3 +170,20 @@ v-show会创建节点，通过操控节点的display属性来进行更改
     <h2>{{msg | myReverse}}</h2>
     {{过滤的属性名 | 过滤函数名}}
 ```
+# 生命周期钩子函数
++ beforeCreate：vue实例的挂载元素$el和数据对象data都还没初始化
+应用：添加loading事件
++ created：vue实例的挂载元素$el还未初始化，但是data对象已经创建
+应用：结束loading事件、发送ajax请求后端数据，为渲染做准备
++ beforeMount：vue的实例挂载元素$el和数据对象data都已经被初始化，但是还只是虚拟的DOM结点
+应用：...
++ mounted: vue的实例渲染完成
+应用：配合路由钩子使用，可以用于操作DOM结点
++ beforeUpdate：data更新时触发
++ updated：data更新时触发（用于监听数据）
++ activated：实例处于激活状态
++ deactivated：实例被关闭状态
+应用：配合<keep-alive></keep-alive>以及路由使用，可以实现组件的有缓存地隐藏显示
++ beforeDestroy、destroyed：实例销毁前和实例销毁后
+实例被销毁后所有绑定在实例上的data数据和watch监听都被注销，但是DOM结点还是存在，
+需要手动removeChild()

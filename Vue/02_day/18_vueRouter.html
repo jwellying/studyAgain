@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <!-- 第一步引入包 -->
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var login = {
+            template:`
+                <div>我是登录页面</div>
+            `
+        }
+
+        var register = {
+            template:`
+                <div>我是注册页面</div>
+
+            `
+        }
+
+        //第二步使用vueRouter
+        Vue.use(VueRouter);
+        //第三步创建路由对象
+        var router = new VueRouter({
+            //第四步配置路由对象
+            routes:[
+                {
+                    path:'/login',
+                    component:login
+                },
+                {
+                    path:'/register',
+                    component:register
+                }
+            ]
+        })
+
+       
+
+        var App = {
+            template:`
+                <div>
+                    <router-link to='/login'>登录</router-link>
+                    <router-link to='/register'>注册</router-link>
+                    <!-- 路由的出口 -->
+                    <router-view></router-view>
+                </div>
+            `
+        }
+
+        new Vue({
+            el:'#app',
+            template:`
+                <App/>
+            `,
+            //第五步挂载到实例上
+            router:router,
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>

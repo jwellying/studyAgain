@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        <button @click="msg='change'">change</button>
+        <button @click="isShow=!isShow">show</button>
+    </div>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    
+    <script>
+        var app = new Vue({
+        el:'#app',
+        data(){
+            return{
+                msg:'hello world',
+                isShow:true
+            }
+        },
+        //在所有的数据元素被创建之前
+        //一般应用不多，可以用于loading页面的处理
+        beforeCreate(){
+            console.log('beforeCreate');
+            console.log(this.msg);
+        },
+        //该钩子函数执行时，数据已经被加载
+        //可以应用于发送ajax请求，来请求后端数据
+        created(){
+            console.log('created');
+            console.log(this.msg);
+            console.log(this.$el);
+        },
+        beforeMount(){
+            console.log('beforeMount');
+            console.log(this.$el);
+            
+        },
+        //数据被挂载到页面上去，可以在该函数时进行一些DOM操作
+        mounted(){
+            console.log('mounted');
+            console.log(this.$el);
+        },
+        beforeUpdate(){
+            console.log('beforeUpdate');
+            console.log(this.msg);
+            console.log(this.$el);
+            
+        },
+        updated(){
+            console.log('updated');
+            console.log(this.msg);
+            console.log(this.$el);
+            
+        },
+        activated(){
+            console.log('activated');
+            
+        },
+        deactivated(){
+            console.log('deactivated');
+            
+        }
+
+    })
+    </script>
+</body>
+</html>
