@@ -48,9 +48,9 @@
         // console.log(f1.name);//this指向实例f1
         //更复杂的例子
         function Jquery(){
-            var _init=Jquery.prototype.init;
-            console.log(Jquery.prototype.init.prototype);
-            console.log(_init.prototype);
+            var _init=Jquery.prototype;
+            // console.log(Jquery.prototype.init.prototype);
+            // console.log(_init.prototype);
             return new _init();
         }
         Jquery.prototype={
@@ -60,7 +60,7 @@
                 console.log(this.length);
             }
         }
-        // new Jquery().init();//100
+        new Jquery().init();//100
         new Jquery();//undefined
         //_init.prototype指向的是init这个普通函数，
         //而Jquery.prototype指向的是Jquery这个构造函数

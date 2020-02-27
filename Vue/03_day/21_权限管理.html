@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var home = {
+            template:`
+                <div>
+                    我是首页
+                </div>
+            `
+        }
+        var login = {
+            data(){
+                return{
+                    userName:'',
+                    pass:''
+                }
+            },
+            template:`
+                <div>
+                    <input type="text" v-model="userName">
+                    <input type="password" v-model="pass">
+                    <button @click="login">登录</button>
+                </div>
+            `,
+            methods:{
+                login(){
+                    localStorage.setItem('user',
+                        {userName:this.userName,password:this.pass}
+                    );
+                    let user = localStorage.getItem('user')
+                    console.log(1);
+                    
+                    //编程式导航
+                    // console.log(this.$route);
+                    
+                    this.$router.push({path:'/home'});
+                }
+            }
+        }
+        var blog = {
+            template:`
+                <div>
+                    我是博客
+                </div>
+            `,
+            //组件内的局部守卫
+            beforeRouteEnter (to, from, next) {
+                // 在渲染该组件的对应路由被 confirm 前调用
+                // 不！能！获取组件实例 `this`
+                // 因为当守卫执行前，组件实例还没被创建
+                // console.log(to);
+                // console.log(from);
+                if(to.meta.auth){
+                    let user = localStorage.getItem('user');
+                    if(user){
+                        next();
+                    }else{
+                        next({
+                            path:'/login'
+                        })
+                    }
+                    
+                }else{
+                    //直接放行
+                    next();
+                }
+                
+            },
+        }
+        var exit = {
+            template:`
+                
+            `
+        }
+
+
+        Vue.use(VueRouter);
+        var router = new VueRouter({
+            routes:[
+                {
+                    path:'/',
+                    redirect:'/home'
+                },
+                {
+                    path:'/home',
+                    component:home,
+                },
+                {
+                    path:'/blog',
+                    component:blog,
+                    meta:{
+                        auth:true
+                    }
+                },
+                {
+                    path:'/login',
+                    component:login,
+                },
+                {
+                    path:'/exit',
+                    component:exit,
+                }
+            ]
+        })
+        var App = {
+            template:`
+                <div>
+                    <router-link to='/home'>首页</router-link>
+                    <router-link to='/blog'>我的博客</router-link>
+                    <router-link to='/login'>登录</router-link>
+                    <a href='javascript:void(0);' @click='exit'>退出</a>
+                    <router-view></router-view>
+                </div>
+            `,
+            components:{
+                home,
+                blog,
+                login,
+                exit
+            },
+            methods:{
+                exit(){
+                    localStorage.removeItem('user');
+                    alert('exit');
+                    this.$router.push({path:'/login'});
+                }
+            }
+        }
+        new Vue({
+            el:'#app',
+            template:`
+                <App/>
+            `,
+            components:{
+                App
+            },
+            router:router
+        })
+    </script>
+</body>
+</html>

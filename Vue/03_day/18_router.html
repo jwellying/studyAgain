@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    
+    <script>
+        var userOne = {
+            template:`
+            <div>
+                <div>我是用户一</div>
+                <div>User {{ $route.params.id }}</div>
+            </div>
+            `,
+            created(){
+                //路由信息对象
+                console.log(this.$route);
+                //VueRouter对象（通过这个对象我们可以调用该对象提供的一些方法）
+                console.log(this.$router);
+                
+            }
+
+        }
+        var userTwo = {
+            template:`
+            <div>
+                <div>我是用户二</div>
+            </div>
+            `,
+            created(){
+                //路由信息对象
+                console.log(this.$route);
+                //VueRouter对象
+                console.log(this.$router);
+
+            }
+        }
+
+        //使用路由
+        Vue.use(VueRouter);
+        //配置路由对象
+        var router = new VueRouter({
+            routes:[
+                {
+                    //动态路径的参数以冒号开头
+                    path:'/uerOne/:id',
+                    name:'userOne',
+                    component:userOne
+                },
+                {
+                    //除了 $route.params 外，
+                    //$route 对象还提供了其它有用的信息，
+                    //例如，$route.query (如果 URL 中有查询参数)、
+                    //$route.hash 等等
+                    path:'/userTwo',
+                    name:'userTwo',
+                    component:userTwo
+                }
+
+            ]
+        })
+
+
+        var App = {
+        template:`
+            <div>
+                <!-- 这里的params和query是固定的参数 -->
+                <!-- 这里的params和query是固定的参数 -->
+                <router-link :to="{name:'userOne',params:{id:1}}">用户一</router-link>
+                <router-link :to="{name:'userTwo',query:{id:2}}">用户二</router-link>
+
+                <router-view></router-view>
+            </div>
+        `,
+        components:{
+            userOne,
+            userTwo
+        }
+    }
+    new Vue({
+        el:'#app',
+        template:'<App></App>',
+        components:{App},
+        router:router
+    })
+    </script>
+</body>
+</html>

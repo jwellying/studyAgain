@@ -21,13 +21,16 @@
         <button class="toggle">切换</button>
     </body>
     <script>
-        var box = document.querySelectorAll(".box");
+        var box = document.getElementsByClassName('.box')
         var add = document.querySelector(".add");
         var remove = document.querySelector(".remove");
         var contain = document.querySelector(".contain");
         var toggle = document.querySelector(".toggle");
+        console.log(box);
         
         add.onclick = function(){
+            console.log(0);
+            
             box.classList.add("bg");  
         }
 

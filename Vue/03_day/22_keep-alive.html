@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+
+        var news = {
+            template:`
+                <div>这是新闻页面</div>
+            `,
+            created(){
+                console.log('新闻页面被created');
+                
+            },
+            mounted(){
+                console.log('新闻页面被mounted');
+                
+            },
+            destroyed(){
+                console.log('新闻页面被销毁');
+                
+            }
+        }
+        var fun = {
+            template:`
+                <div>这是娱乐页面</div>
+            `,
+            created(){
+                console.log('娱乐页面被created');
+                
+            },
+            mounted(){
+                console.log('娱乐页面被mounted');
+                
+            },
+            destroyed(){
+                console.log('娱乐页面被销毁');
+                
+            }
+        }
+
+        Vue.use(VueRouter);
+        var router = new VueRouter({
+            routes:[
+                {
+                    path:'/news',
+                    component:news
+                },
+                {
+                    path:'/fun',
+                    component:fun
+                }
+            ]
+        })
+        var App = {
+            template:`
+                <div>
+                    <router-link to='/news'>新闻</router-link>
+                    <router-link to='/fun'>娱乐</router-link>
+
+                    <keep-alive>
+                        <router-view></router-view>
+                    </keep-alive>
+                    
+                
+                </div>
+            `,
+            components:{
+                news,
+                fun
+            }
+        }
+        new Vue({
+            el:'#app',
+            template:'<App/>',
+            components:{
+                App
+            },
+            router:router
+        })
+    </script>
+</body>
+</html>
