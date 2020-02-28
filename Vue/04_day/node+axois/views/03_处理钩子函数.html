@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='../../../node_modules/vue/dist/vue.js'></script>
+    <script src="../../../node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="../../../node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script >
+
+        var App = {
+            data(){
+                return{
+                    msg:''
+                }
+            },
+            template:`
+                <div>
+                    <button @click='sendGet'>发送get请求</button>
+                    <button @click='sendPost'>发送post请求</button>
+                    <p>{{msg}}</p>
+                </div>
+            `,
+            methods:{
+                sendGet(){
+                    
+                    //get请求
+                    this.$axios({
+                        method: 'get',
+                        url: '/',
+                        baseURL: 'http://127.0.0.1:8888'
+                    })
+                    .then((res)=>{
+                        console.log(res);
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
+
+                },
+                sendPost(){
+                    this.$axios({
+                        method: 'post',
+                        url: '/post',
+                        baseURL: 'http://127.0.0.1:8888',
+                        data:{
+                            userName:"jack",
+
+                        },
+                        transformRequest: [function (data) {
+                            // 对 data 进行任意转换处理
+                            data.userName = 'rose';
+                            console.log(data);
+                            
+                            return data;
+                        }],
+                        // `transformResponse` 在传递给 then/catch 前，允许修改响应数据
+                        transformResponse: [function (data) {
+                            // 对 data 进行任意转换处理
+                            data = '我是rose'
+                            return data;
+                        }]
+
+                        // // `headers` 是即将被发送的自定义请求头
+                        // headers: {'X-Requested-With': 'XMLHttpRequest'},
+
+
+                    })
+                    .then((res)=>{
+                        console.log(res);
+                        //typeof res.data [string]
+                        // let data = JSON.parse(res.data);
+                        console.log(res.data);
+                        this.msg = res.data
+                    })
+                    .catch((err)=>{
+                        console.log(err);
+                    })
+                }
+            }
+        }
+
+        //将axios绑定到vue的原型上
+        Vue.prototype.$axios = axios;
+        new Vue({
+            el:'#app',
+            template:`
+                <App/>
+            `,
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='../../../node_modules/vue/dist/vue.js'></script>
+    <script src="../../../node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="../../../node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var App = {
+            template:`
+                <div>
+                    <button @click='sendAll'>并发请求</button>
+                </div>
+            `,
+            methods:{
+                sendAll(){
+                    this.$axios.defaults.baseURL = 'http://127.0.0.1:8888'
+                    let f1 = this.$axios.get('/');
+                    let f2 = this.$axios.post('/post',{userName:'jack'});
+
+                    axios.all([f1, f2])
+                    .then(this.$axios.spread(function (res1, res2) {
+                        // 两个请求现在都执行完成
+                        console.log(res1);
+                        console.log(res2);
+                        
+                    }))
+                    .catch(err=>{
+                        console.log(err);
+                        
+                    })
+                }
+            }
+        }
+
+        Vue.prototype.$axios = axios;
+        new Vue({
+            el:'#app',
+            template:'<App/>',
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>
