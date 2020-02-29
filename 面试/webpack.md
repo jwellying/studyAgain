@@ -6,3 +6,6 @@
 + 我们的代码按照规定正好是通过module.exports="xxx"进行赋值
 + 函数调用结束后，module.exports被赋值
 + 最后return该对象作为require的返回值
+
+
+## webpack-dev-server 一个用自动打开页面自动刷新的工具（配置见webpack.dev.config）

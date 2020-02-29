@@ -21,8 +21,9 @@ module.exports = {
                 loader:'style-loader!css-loader'
             },
             {
-                test:/\.(jpg | jpeg | png | svg)$/,
-                loader:'url-loader?limit=40000'
+                // 不能随便加空格
+                test:/\.(jpg|jpeg|png|svg)$/,
+                loader:'url-loader?limit=60000'
                 // limit的数值单位为字节
             }
         ]
