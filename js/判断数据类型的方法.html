@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num = 5;
+        var str = 'hello';
+        var bol = true;
+        var und = undefined;
+        var n = null;
+        var obj = {name:'jack'};
+        var arr = [1,2];
+        var fn = function() {
+            console.log(1);
+        }
+        // 方法一、typeof
+        console.log(typeof num);    // number
+        console.log(typeof str);    // string
+        console.log(typeof bol);    // boolean
+        console.log(typeof und);    // undefined
+        console.log(typeof n);      // object
+        console.log(typeof obj);    // object
+        console.log(typeof arr);    // object
+        console.log(typeof fn);     // function
+        // 由此可以看出typeof可以判断number、string、undefined、function以及boolean
+        // 但是数组对象和null都是object，故不能区分
+
+
+        // 方法二、instanceof
+        // 原理判断变量的原型链是否存在判断的数据类型的原型
+        console.log(num instanceof Number);         //false
+        console.log(str instanceof String);         //false
+        console.log(bol instanceof Boolean);        //false
+        // console.log(und instanceof undefined);   //报错
+        // console.log(n instanceof null);          //报错
+        console.log(obj instanceof Object);         //true
+        console.log(arr instanceof Array);          //true
+        console.log(fn instanceof Function);        //true
+        // 由此可以看出instanceof只能用于判断对象、数组、方法
+        // number\string\boolean只有通过new方法创建时才能被判断
+
+        // 方法三、object.prototype.toString.call()-->最完美的判断方式
+        console.log(Object.prototype.toString.call(num));
+        console.log(Object.prototype.toString.call(str));
+        console.log(Object.prototype.toString.call(bol));
+        console.log(Object.prototype.toString.call(und));
+        console.log(Object.prototype.toString.call(n));
+        console.log(Object.prototype.toString.call(obj));
+        console.log(Object.prototype.toString.call(arr));
+        console.log(Object.prototype.toString.call(fn));
+        // 提取内容
+        var res = Object.prototype.toString.call(num).replace('[object ','').replace(']','');
+        console.log(res);
+        
+        // 对该方法的封装
+        function type(arg){
+            return Object.prototype.toString.call(arg).replace('[object ','').replace(']','');
+        }
+        console.log(type(1));
+        console.log(type('string'));
+        // es6新判断方法
+        console.log( Array.isArray(arr));
+        console.log(Number.isInteger(num));
+        
+</script>
+</body>
+</html>

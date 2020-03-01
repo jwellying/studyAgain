@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 小插曲 -->
+    <script type="text">
+        var num = 1;
+        var str = '1';
+        console.log(num==str);
+        console.log(num===str);
+        
+    </script>
+    <!-- 浅拷贝 -->
+    <script>
+        // // 浅拷贝
+        // var a = [1,2,3];
+        // b = a;
+        // console.log(a===b); //true
+        // a[0] = 9;
+        // console.log(a,b);   //a b 同时改变了
+        // 展开运算符
+        // 对象扩展运算符
+        // var p1 = {
+        //     name:'jack',
+        //     gender:'男',
+        //     children:{
+        //         name:'mike'
+        //     }
+        // }
+        // var p2 = {...p1};
+        // console.log(p1,p2);
+        // p1.name='rose';
+        // console.log(p1,p2);
+        // p1.children.name = 'lily';
+        // console.log(p1,p2);
+        // 从结果可以看出使用对象扩展运算符实现的拷贝，在子代元素中仍为浅拷贝
+        // assign实现拷贝(同上)
+        // var obj = {
+        //     name:'jack',
+        //     gender:'男',
+        //     children:{
+        //         name:'mike'
+        //     }
+        // }
+        // var obj2 = Object.assign({},obj);
+        // obj.name='rose';
+        // console.log(obj,obj2);
+        // obj.children.name = 'lily';
+        // console.log(obj,obj2);
+        
+    </script>
+    <!-- 深拷贝的实现方法 -->
+    <script>
+        // 通过JSON.stringify() 
+        // 这种方法虽然可以实现数组或对象深拷贝，但不能处理函数
+        var obj = {
+            name:'jack',
+            gender:'男',
+            children:{
+                name:'mike'
+            }
+        }
+        var obj2 = JSON.parse(JSON.stringify(obj));
+        obj.name='rose';
+        console.log(obj,obj2);
+        obj.children.name = 'lily';
+        console.log(obj,obj2);
+        // 手写递归   _:3)] <)_
+        function deepCopy(obj1){
+            // 判断是一个数组还是一个对象
+            var obj2 = Array.isArray(obj1)?[]:{};
+            // 不为空且为数组或对象
+            if(obj1&&typeof obj1==='object'){
+                 // 遍历
+                 for(let i in obj1){
+                     if(obj1.hasOwnProperty(i)){
+                        if(obj1[i]&&typeof obj1[i]==='object'){
+                            obj2[i] = deepCopy(obj1[i]);
+                        }else{
+                            obj2[i] = obj1[i];
+                        }
+                     }
+                 }
+            }
+            return obj2;
+        }
+        var obj = {
+            name:'jack',
+            gender:'男',
+            children:{
+                name:'mike',
+                child:{
+                    name:'hhh'
+                }
+            }
+        }
+        var obj2 = deepCopy(obj);
+        obj.name='rose';
+        console.log(obj,obj2);
+        obj.children.name = 'lily';
+        console.log(obj,obj2);
+        obj.children.child.name='www';
+        console.log(obj,obj2);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <SCript>
+        console.log(isNaN(NaN));        // true
+        console.log(isNaN(10));         // false
+        console.log(isNaN("10"));       // false (可以转换为数值10)
+        console.log(isNaN("blue"));     // true  
+        console.log(isNaN(true));       // false (可以转换为数值1)
+        var num = 1;
+        var arr = [1,2,3];
+        var obj = {name:'jack'};
+        console.log(1);
+        
+        console.log(num.toString());
+        console.log(arr.toString().split(',').join('/'));
+        console.log(obj.toString());
+        console.log(arr.valueOf());
+        console.log(arr.join());
+        
+        
+    </SCript>
+</body>
+</html>
