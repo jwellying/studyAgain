@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="app">hh</div>
+    <script>
+        var app = document.querySelector('div');
+        app.onclick = function(e){
+            // 事件对象e
+            console.log(e); 
+        }
+    </script> -->
+    <div id="a">aa
+        <div id="b">bb
+            <div id="c">cc</div>
+        </div>
+    </div>
+    <script>
+        var $ = function getEle(eleId){
+            return document.getElementById(eleId);
+        }
+        // console.log($('a'));
+        // $('a').onclick = function(){
+        //     console.log('aaa');
+        // }
+        // $('b').onclick = function(){
+        //     console.log('bbb');
+        // }
+        // $('c').onclick = function(){
+        //     // 设置为true可以取消事件冒泡
+        //     // event.cancelBubble = true;
+        //     console.log('ccc');
+        // }
+        // addEventListener方法
+        $('a').addEventListener('click',function(){
+            console.log('aa');
+            
+        },true)
+        $('b').addEventListener('click',function(){
+            console.log('bb');
+            event.stopPropagation();
+        },true)
+        $('c').addEventListener('click',function(){
+            console.log('cc');
+            // event.stopPropagation();
+        })
+        
+    </script>
+</body>
+</html>

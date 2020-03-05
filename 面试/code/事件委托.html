@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul>
+            <li id='1'>11</li>
+            <li id='2'>11</li>
+            <li id='3'>11</li>
+            <li id='4'>11</li>
+        </ul>
+    </div>
+    <script>
+        // 事件委托
+        // 当标签十分多时，给每个标签绑定事件就显得十分浪费
+        var u = document.querySelector('ul');
+        u.addEventListener('click',function(e){
+            // 判断事件源是否为li
+            if(e.target&&e.target.nodeName.toLowerCase() == 'li'){
+                console.log(`LI${e.target.id} was clicked`);
+                
+            }
+        })
+    </script>
+</body>
+</html>

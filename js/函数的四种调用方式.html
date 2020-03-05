@@ -48,10 +48,10 @@
         // console.log(f1.name);//this指向实例f1
         //更复杂的例子
         function Jquery(){
-            var _init=Jquery.prototype;
-            // console.log(Jquery.prototype.init.prototype);
-            // console.log(_init.prototype);
-            return new _init();
+            var _init=Jquery.prototype.init();
+            // // console.log(Jquery.prototype.init.prototype);
+            // // console.log(_init.prototype);
+            return _init;
         }
         Jquery.prototype={
             constructor:Jquery,
@@ -60,7 +60,7 @@
                 console.log(this.length);
             }
         }
-        new Jquery().init();//100
+        // new Jquery()._init();//100
         new Jquery();//undefined
         //_init.prototype指向的是init这个普通函数，
         //而Jquery.prototype指向的是Jquery这个构造函数
@@ -69,6 +69,20 @@
         //方法调用和构造方法时this都指向调用对象
         //方法调用时属性查找会从调用对象本身进行查找
         //而构造方法调用会先从本身属性寻找，如果没找到再从原型对象中寻找
+        var name = 'window';
+        var obj = {
+            name:'obj',
+            getName:function(fn){
+                return fn;
+            }
+        }
+        // 函数调用
+        var o = obj.getName(function(){
+            console.log(this.name);
+        });
+        o();
+        // 方法调用
+        // obj.getName().call(obj);
     </script>
 </body>
 </html>

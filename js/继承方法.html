@@ -32,7 +32,10 @@
         var o1={
             age:12,
             name:"tom",
-            gender:"男"
+            gender:"男",
+            child:{
+                name:'lily'
+            }
         };
         //直接等价，会使二者指向同一个对象，对其中一个改变将会影响到另一个的值
         // var o2=o1;
@@ -47,6 +50,7 @@
         // }
         extend(o3,o1);
         o3.name = 'jack';
+        o3.child.name='rose'
         console.log(o3);
         console.log(o1);
         
@@ -67,16 +71,16 @@
         //o5.__proto__=o1;
         //继承方法五（借用构造函数）
         function Animal(name,gender,age){
-            this.name = name,
-            this.gender = gender,
-            this.age = age
+            this.name = name;
+            this.gender = gender;
+            this.age = age;
         }
 
         function Person(name,gender,age,say){
             //报错name，gender，age属性变成window的属性
             Animal(name,gender,age);
             this.say = say;
-        // }
+        }
         function Person(name,gender,age,say){
             //报错name，gender，age属性变成window的属性
             // Animal.call(this,name,gender,age);

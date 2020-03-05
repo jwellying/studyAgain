@@ -37,14 +37,14 @@
                     </ul>
                 </div>
             `,
-            props:['objs']
+            props:['obj']
         }
 
         var fatherComponent = {
             template:`
                 <div>
                     <p>我是父组件</p>
-                    <child-component :obj="objs"></child-component>
+                    <child-component :obj="obj"></child-component>
                 </div>
             `,
             data(){

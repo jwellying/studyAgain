@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <script src="../node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var user = {
+            data(){
+                return{
+                    load:true,
+                    content:null,
+                    error:null
+                }
+            },
+            template:`
+                <div>
+                    <div class='load' v-if='load'>loading...</div>
+                    <div class='content' v-if='content'>{{content}}</div>    
+                    <div class='error' v-if='error'>{{err}}</div>
+                </div>
+            `,
+            methods:{
+                getData(user){
+                    this.load = false;
+                    this.content = user;
+                },
+                getErr(err){
+                    this.load = false;
+                    this.error = err;
+                }
+            },
+            beforeRouteEnter (to, from, next) {
+                // 在渲染该组件的对应路由被 confirm 前调用
+                // 不！能！获取组件实例 `this`
+                // 因为当守卫执行前，组件实例还没被创建
+                console.log(to);
+                
+                axios.get(`http://127.0.0.1:8888/user/${to.params.id}`)
+                .then((res)=>{
+                    // 此时的this是不可用的
+                    // console.log(this);
+                    next(vm =>{
+                        console.log(res);
+                        // vm没有用-->无解
+                        console.log(vm.data);
+                        
+                        // vm.getData(res.data);
+                    })
+                    // console.log(res);
+                    // next();
+                    
+                })
+                .catch((err)=>{
+                    next(vm=>{
+                        console.log(err);
+                        vm.getErr(err);
+                    })
+                    // console.log(err);
+                    // next();
+                    
+                })
+            },
+            beforeRouteUpdate (to, from, next) {
+                // 在当前路由改变，但是该组件被复用时调用
+                // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+                // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+                // 可以访问组件实例 `this`
+                console.log(to);
+                this.$axios.get(`http://127.0.0.1:8888/user/${to.params.id}`)
+                .then((res)=>{
+                    console.log(res);
+                    this.getData(res.data)
+                    next();
+                    
+                })
+                .catch((err)=>{
+                    
+                    console.log(err);
+                    this.getErr(err);
+                    next();
+                    
+                })
+                
+            },
+            beforeRouteLeave (to, from, next) {
+                // 导航离开该组件的对应路由时调用
+                // 可以访问组件实例 `this`
+            }
+        }
+        
+        Vue.use(VueRouter);
+        var router = new VueRouter({
+            routes:[
+                {
+                    path:'/user/:id',
+                    name:'user',
+                    component:user
+                }
+            ]
+        })
+
+        var App = {
+            template:`
+                <div>
+                     <router-link :to="{name:'user',params:{id:1}}">用户一</router-link>
+                     <router-link :to="{name:'user',params:{id:2}}">用户二</router-link>
+
+                     <router-view></router-view>  
+                </div>
+            `,
+            components:{
+                user
+            }
+
+        }
+        Vue.prototype.$axios = axios;
+        new Vue({
+            el:'#app',
+            template:`
+                <App />
+            `,
+            components:{
+                App
+            },
+            router:router
+        })
+    </script>
+</body>
+</html>

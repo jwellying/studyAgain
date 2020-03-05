@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 函数对象
+        // var fn = function(){};
+        // // console.log(fn);
+        // // 指向函数的实例
+        // console.log(fn.prototype);  
+        // console.log(typeof fn.prototype); //object
+        // console.log(fn.prototype.__proto__===Object.prototype);
+        // // 普通对象
+        // var obj = {
+        //     name:'jack'
+        // }
+        // // console.log(obj.prototype);
+        // console.log(obj.__proto__===Object.prototype);
+        // function Person(name,height){
+        //     this.name = name;
+        //     this.height = height;
+        // }
+        // var person = new Person('jsck',180);
+        // console.log(Person.prototype);
+        // console.log(person.__proto__);
+        // console.log(Person.prototype==person.__proto__);
+        // console.log(Person.prototype.constructor===Person);
+        // console.log(person.__proto__.constructor===Person);
+        // console.log(Person.prototype.__proto__===Object.prototype);
+        // console.log(Object.__proto__===null);
+        // console.log(Function.prototype.__proto__);
+        
+        // 再来看一个例子
+        function Animal(){
+        }
+        Animal.prototype.age = 18;
+        console.log(Animal.prototype);
+        
+        function dog(){
+
+        }
+        dog.prototype = Animal;
+        console.log(dog.constructor);
+        
+        var littleDog = new dog();
+        console.log(dog.age);
+        console.log(littleDog.age);
+        
+        
+    </script>
+</body>
+</html>

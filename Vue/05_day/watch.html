@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/axios/dist/axios.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+
+        var home = {
+            template:`
+                <div>我是首页</div>
+            `
+        }
+
+        var blog = {
+            data(){
+                return{
+                    load:true,
+                    content:false,
+                    err:false
+                }
+            },
+            template:`
+                <div>
+                    <div class='load' v-if='load'>loading...</div>
+                    <div class='content' v-if='content'>{{content}}</div>
+                    <div class='err' v-if='err'>{{err}}</div>    
+                </div>
+            `,
+            watch:{
+                '$route':'getData'
+            },
+            created(){
+                this.getData();
+                
+            },
+            methods:{
+                getData() {
+                    this.$axios({
+                        method:"get",
+                        url:'/blog',
+                        baseURL: 'http://127.0.0.1:8888'
+                    })
+                    .then((res)=>{
+                        console.log(res);
+                        this.load = false;
+                        this.content = res.data;
+                    })
+                    .catch(err=>{
+                        console.log(err);
+                        this.load = false;
+                        this.err = err;
+                    })
+                }
+            }
+        }
+
+        Vue.use(VueRouter);
+
+        var router = new VueRouter({
+            routes:[
+                {
+                    path:'/home',
+                    component:home
+                },
+                {
+                    path:'/blog',
+                    component:blog
+                }
+            ]
+        })
+
+
+        var App = {
+            template:`
+                <div>
+                    <router-link to='/home'>首页</router-link>   
+                    <router-link to='/blog'>我的博客</router-link>   
+
+                    <router-view></router-view>   
+                </div>
+            `,
+            components:{
+                home,
+                blog
+            }
+        }
+
+        Vue.prototype.$axios = axios;
+        new Vue({
+            el:'#app',
+            template:`
+                <App />
+            `,
+            components:{
+                App
+            },
+            router:router
+        })
+    </script>
+</body>
+</html>

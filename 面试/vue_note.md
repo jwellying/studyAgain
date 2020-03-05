@@ -187,3 +187,4 @@ v-show会创建节点，通过操控节点的display属性来进行更改
 + beforeDestroy、destroyed：实例销毁前和实例销毁后
 实例被销毁后所有绑定在实例上的data数据和watch监听都被注销，但是DOM结点还是存在，
 需要手动removeChild()
+
