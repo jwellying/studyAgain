@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // MVVM是一个构造函数
+        function MVVM(options){
+            this.$options = options;
+            // data是一个对象时
+            this.$data = options.data;
+            // data是一个函数时
+            this.$$data = this.$data();
+            this.template = options.template;
+
+            this.init();
+        }
+        // 挂载创建函数
+        MVVM.prototype.init = function(){
+            // 监视属性
+            this.reactive(this.$$data);
+        }
+
+        // reactive函数
+        MVVM.prototype.reactive = function(obj){
+            let temVal;
+            for(let key in obj){
+                
+                Object.defineProperty(obj,key,{
+                    // set函数 
+                    set:function(value){
+                        console.log('set被触发了');
+                        
+                        temVal = value;
+                    },
+                    // get函数
+                    get:function(){
+                        console.log('get被触发了');
+                        return temVal;
+                    }
+                })
+               
+            }
+        }
+
+        var vm = new MVVM({
+        data(){
+            return {
+                text:'message'
+            }
+        },
+        template:`
+            <div>
+                <input type="text" v-model='text'>
+                {{text}}
+            </div>
+        `
+    })
+    </script>
+</body>
+</html>

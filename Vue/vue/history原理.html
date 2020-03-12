@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div>
+        <a class='router-link' href="/home">首页</a>
+        <a class='router-link' href="/news">新闻</a>
+    </div>
+    <!-- 模板渲染的出口 -->
+    <div id="router-view"></div>
+    <script>
+        var a_s = document.querySelectorAll('a');
+        var view = document.getElementById('router-view');
+
+        // 切换组件的封装
+        function changeContent(path){
+            switch(path){
+                    case '/home':
+                        view.innerHTML = `<p>我是home组件</p>`;
+                        break;
+                    case '/news':
+                        view.innerHTML = `<p>我是news组件</p>`;
+                        break;
+                }
+        }
+
+        
+        // 初始值的判定
+        if(location.pathname==='/home'){
+            changeContent('/home');
+        }else{
+            changeContent('/news');
+        }
+
+        
+        for(let i = 0;i<a_s.length;i++){
+            a_s[i].addEventListener('click',function(e){
+                // console.log(e);
+                e.preventDefault();
+                var path = e.target.getAttribute('href');
+                // console.log(path);
+                history.pushState({},'',path);
+                changeContent(path)
+            })
+        }
+    </script>
+</body>
+</html>

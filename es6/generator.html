@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function* gen(){
+            yield 'hello';
+            yield 'world';
+            return 'ending'
+        }
+        // 函数执行后，gen被赋值一个指针
+        // var gen = gen();
+        // 通过next来逐步执行
+        // console.log(gen.next());
+        // console.log(gen.next());
+        // console.log(gen.next());
+        // console.log(gen.next());
+        // 配合iterator使用
+        let iterator = gen();
+        for(let i of iterator){
+            console.log(i);
+            
+        }
+        // 在一个generator中使用另一个
+        function* gen1(){
+            yield* gen();
+            yield 'nice to meet you';
+        }
+        let iterator1 = gen1();
+        for(let i of iterator1){
+            console.log(i);
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        (function(){
+            // for of 循环
+        let str = 'hello world';
+        for(let alp of str){
+            // console.log(alp);
+            console.log(`${alp}`);
+            
+        }
+        // for in 循环 还可遍历数组对象
+        let array = {name:'jack'};
+        for(let val in array){
+            // 得到的是数组的属性
+            console.log(val);
+            console.log(array[val]);
+            
+        }
+        // forEach循环
+        let arr = [1,2,['x',['y']]];
+        function getVal(v){
+            v.forEach((value,index)=>{
+                var type = Object.prototype.toString.call(value);
+                type = type.replace('[object ','').replace(']','');
+                console.log(type);
+                if(type==='Array'){
+                    getVal(value);
+                }else{
+                    console.log(`${index}-->${value}`);
+                }
+            })
+        }
+        getVal(arr);
+        })();
+        // 字符串API复习
+        let str = ' hello world ';
+        let str1 = ' nice to meet you'
+        console.log(str.charAt(0));
+        console.log(str.charCodeAt(4));
+        // 连接字符串
+        console.log(str.concat(str1));
+        // inclue()\startWith()\endWith()
+        console.log(str.includes('h'));
+        console.log(str.startsWith('h'));
+        console.log(str.endsWith('d'));
+        // repete()
+        console.log(str.repeat(3));
+        // 消除字符串中的空格
+        console.log(str.trim());
+        console.log(str.trimStart());
+        console.log(str.trimEnd());
+        
+        
+        
+        
+        
+    </script>
+</body>
+</html>

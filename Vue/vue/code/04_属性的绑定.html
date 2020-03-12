@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        .activated{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <div :class='{activated:isActivated}''>hhh</div> 
+                    <div :class='[activatedclass]''>hhh</div> 
+                     
+                    <div :style="{color:'blue'}">hhh</div>  
+                    <div :style="{styleObj}">hhh</div>  
+
+                </div>
+            `,
+            data(){
+                return{
+                    isActivated:true,
+                    activatedclass:"activated",
+                    // 推荐写法
+                    styleObj : {
+                        color:'blue',
+                        fontSize:'20px'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

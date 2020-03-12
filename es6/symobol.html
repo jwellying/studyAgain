@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var s = Symbol();
+        // symbol()
+        console.log(typeof s);
+        // symbol(foo)
+        var s1 = Symbol('foo');
+        console.log(s1);
+        var obj = {
+            name:'jack',
+            toString(){
+                return this.name;
+            }
+        }
+        // symbol(jack)
+        console.log(Symbol(obj));
+        // 任意两个symbol值即使参数相同也不等
+        var sym1 = Symbol('foo');
+        var sym2 = Symbol('foo');
+        console.log(sym1===sym2);
+        // 不能与其他值相加(报错)
+        // console.log(sym1+'hhh');
+        // 输出描述
+        console.log(sym1.description);
+        
+        // 作为属性名的symbol
+        let c = {};
+        c[sym1] = 'hhh';
+        console.log(c[sym1]);
+        
+        
+    </script>
+</body>
+</html>

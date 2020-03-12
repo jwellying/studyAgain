@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 宏任务和微任务
+        // setTimeout(()=>{
+        //     console.log(4);
+        // },1000)
+        // // promise
+        // new Promise((resolve,reject)=>{
+        //     console.log(1);
+        //     resolve();   
+        // })
+        // .then(()=>{
+        //     setTimeout(()=>{
+        //         console.log(3);
+        //     })
+        // })
+        // console.log(2);
+        // 铺垫
+        // 判断参数为一个函数的方法
+        // const isFuction = (ava)=>{
+        //     return typeof(ava) === 'Fuction';
+        // }
+        // console.log(isFuction(1));
+        // 
+        // 示例
+        new promise((resolve,reject)=>{
+            // 异步函数
+            // 成功返回resolve(res)
+            // 失败返回reject(err)
+        })
+        .then((res)=>{
+            console.log(res); 
+        })
+        .catch(err=>{
+            console.log(err);
+            
+        })
+        // promise函数有三个状态：pending、Fulfilled、Rejected
+        // resolve : 将Promise对象的状态从 Pending(进行中) 变为 Fulfilled(已成功)
+        // reject : 将Promise对象的状态从 Pending(进行中) 变为 Rejected(已失败)
+        const Pending = 'pending';
+        const Fulfilled = 'fulfilled';
+        const Rejected = 'rejected';
+        // 然后promise有两个回调函数分别是resolve和reject
+        function myPromise(executor){
+            let self = this;
+            // 初始状态位pending
+            self.status = Pending;
+            // 成功后的回调
+            self.onFulfilled = [];
+            // 失败后的回调
+            self.onRejected = [];
+
+            // resolve()
+            function resolve(value){
+                if(self.status===Pending){
+                    self.status = Fulfilled;
+                    self.value = value;
+                    self.onFulfilled.forEach(fn => fn());//PromiseA+ 2.2.6.1
+
+                }
+            }
+            // reject()
+            function reject(reason){
+                if(self.status===Pending){
+                    self.status = Rejected;
+                    self.reason = reason;
+                    self.onRejected.forEach(fn => fn());//PromiseA+ 2.2.6.2
+
+                }
+            }
+
+            // 给promise原型绑定了then方法
+            myPromise.prototype.then = function(onFulfilled,onRejected){
+                
+            }
+        }
+    </script>
+</body>
+</html>

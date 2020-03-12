@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
+    <script type="text/html">
         var obj={
             age:18,
             height:180,
@@ -29,6 +29,89 @@
         //解构赋值的其他应用
         var person={name:"张三",heighth:180};
         var {name:userName,heighth:userHeight}=person;
+    </script>
+    <script>
+        // 一维数组的结构赋值
+        {
+            let arr = [1,2,3];
+            [a,b,c] = arr;
+            // 1 2 3
+            console.log(a,b,c);
+        }
+        
+        // 不完全解构
+        {
+            let arr = [1,[2,[3]]];
+            [a,[b]] = arr;
+            // 1 2
+            console.log(a,b);
+        }
+        // 展开运算符
+        {
+            let arr = [1,2,3,4];
+            [head,...tail] = arr;
+            console.log(head,tail);
+            
+        }
+        // 带默认值的解构赋值
+        {
+            let [a,b=1] = ['x',undefined];
+            console.log(a,b);
+            
+        }
+        // 对象的解构赋值
+        // 对象的属性名必须一致，否则赋值失败
+        {
+            let obj = {name:'jack',age:18};
+            let {name,age} = obj;
+            console.log(name,age);
+            
+        }
+        // 指定对象赋值
+        {
+            let obj = {name:'jack',age:18};
+            let {age,name} = obj;
+            console.log(name,age);
+            
+        }
+        // 还可以将对象的方法进行赋值
+        {
+            let {log} = console;
+            log('hhh');
+        }
+        // 对象属性名一定不能一致时
+    
+        {
+            let obj = {name:'jwellying',age:18};
+            let {name:myName} = obj;
+            console.log(myName);
+            
+        }
+        // 字符串的解构赋值
+        {
+            let str = 'hello world';
+            let [a,b] = str;
+            console.log(a,b);
+            let {length} = str;
+            console.log(length);
+            
+        }
+        // 函数参数的解构赋值
+        // 1
+        function add([x,y]){
+            return x+y;
+        }
+        console.log(add([1,2]));
+        // 2
+        function getInfo({name,age}){
+            console.log(name,age);
+        }
+        let person = {name:'jwellying',age:18,gender:'女'};
+        getInfo(person);
+        // 主要用途
+        // 1、给函数赋值参数
+        // 2、变换变量  [x,y]=[y,x];
+        // 3、接收json数据 
     </script>
 </body>
 </html>

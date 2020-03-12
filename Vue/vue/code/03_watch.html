@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <input v-model='question' @blur = 'sendQ'>
+                    <p>{{answer}}</p>    
+                </div>
+            `,
+            data(){
+                return{
+                    question:'',
+                    answer:''
+                }
+            },
+            watch:{
+                question(){
+                    this.answer = '正在为您搜索答案中...';
+                    // this.sendQ(this.question);
+                }
+            },
+            methods:{
+                sendQ(){
+                    // console.log(arguments);
+                    setTimeout(()=>{
+                        this.answer = '对不起未找到';
+                        
+                    },2000)
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>

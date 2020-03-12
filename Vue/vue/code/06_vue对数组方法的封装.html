@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <div v-for='(value,index) in data'>
+                        <p>{{value}}</p>    
+                        <p>{{getName}}</p>
+                    </div>
+                </div>
+            `,
+            data(){
+                return {
+                    data:[1,2,3]
+                }
+            },
+            computed:{
+                getName(){
+                    return this.data.filter((ele) => {
+                         return ele%2==0;
+
+                    });
+                }
+            }
+        })
+    </script>
+</body>
+</html>

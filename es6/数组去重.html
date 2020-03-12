@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+        // var arr = [];
+        // var str = 'hello';
+        // for(let i of str){
+        //     console.log(i);
+        //     arr.push(i);
+        // }
+        // console.log(arr);
+        // 数组去重
+        // 方法一、set方法
+        // Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）
+        // 和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+        // var a = [1,1,2,7];
+        // function del(arr){
+        //     return Array.from(new Set(arr))
+        // }
+        // var b = del(a);
+        // console.log(b);
+        // console.log(a===b);
+        // 遍历去重
+        // let array = [1,2,2,4,3,5,2,3];
+        // for(let i = 0;i<array.length;i++){
+        //     // console.log(i);
+        //    for(let j = i+1;j<array.length;j++){
+        //        if(array[i]===array[j]){
+        //            array.splice(j,1);
+        //        }
+        //    }
+        // }
+        // console.log(array);
+        // // indexOf去重
+        // function unique(arr){
+        //     let array = [];
+        //     for(let i = 0;i<arr.length;i++){ 
+        //         if(array.indexOf(arr[i])===-1){
+        //             array.push(arr[i]);
+        //         }
+        //     }
+        //     return array;
+        // }
+        // console.log(unique([1,9,0,8,9,6,8]));
+        // includes方法
+        function unique(arr){
+            let array = [];
+            for(let i in arr){
+                if(!array.includes(arr[i])){
+                    array.push(arr[i]);
+                }
+            }
+            return array;
+        }
+        console.log(unique([1,9,0,0,0,8,9,6,8]));
+
+        // sort()方法
+        // function unique(arr){
+        //     arr = arr.sort()
+        //     var arrry= [arr[0]];
+        //     for (var i = 1; i < arr.length; i++) {
+        //         if (arr[i] !== arr[i-1]) {
+        //             arrry.push(arr[i]);
+        //         }
+        //     }
+        //     return arrry;
+        // }
+        // console.log(unique([1,9,0,0,0,8,9,6,8]));
+        
+        var arr1 = [1,2,3];
+        for(let i in arr1){
+            console.log(i);
+            
+        }
+   </script>
+</body>
+</html>

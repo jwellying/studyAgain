@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        .activated{
+            color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var app = new Vue({
+            el:'#app',
+            template:`
+            <div>
+                <div :class='{activated:isActivated}'>{{msg}}</div>
+                <button @click='isActivated=!isActivated'>change</button>
+                <p v-if='3>2?false:true'>你能看到我吗</p>
+                <p v-show='isShow'></p>
+            </div>
+                
+            `,
+            data(){
+                return{
+                    msg:'hh',
+                    isActivated:false,
+                    isShow:false
+                }
+            }
+        })
+    </script>
+</body>
+</html>

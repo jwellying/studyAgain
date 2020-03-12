@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        // var app = new Vue({
+        //     el:'#app',
+        //     template:`
+        //         <div>
+        //             <div>{{text}}</div>    
+        //             <div>{{reverse}}</div>    
+        //         </div>
+        //     `,
+        //     data(){
+        //         return{
+        //             text:'hello'
+        //         }
+        //     },
+        //     // 计算属性与方法的不同
+        //     // 计算属性值的改变依赖于它所关联的值
+        //     // 计算属性带有缓存，只有当跟踪的值改变，计算属性才会被执行
+        //     // 而方法的操纵权在于用户去触发事件
+        //     computed:{
+        //         reverse(){
+        //             return this.text.split('').reverse().join('');
+        //         }
+        //     }
+        // })
+        var app = new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <div>{{getFullName}}</div>        
+                </div>
+            `,
+            data(){
+                return{
+                    firstName:'jack',
+                    lastName:'smith',
+                    fullName:'smith jack'
+                }
+            },
+            // 计算属性与监听器
+            // 此时使用computed属性更加合适
+            // 因为watch属性造成了冗余
+            // watch:{
+            //     firstName(newV){
+            //         this.fullName = this.lastName + newV;
+            //         console.log('watch1');
+                    
+            //     },
+            //     lastName(newV){
+            //         this.fullName = newV + this.firstName;
+            //         console.log('watch2');
+                    
+            //     }
+
+            // },
+            computed:{
+                getFullName:{
+                    get:function(){
+                        return this.firstName +' '+ this.lastName;
+                    },
+                    set:function(newV){
+                        var names = newV.split(' ');
+                        this.firstName = names[0];
+                        this.lastName = names[names.length-1];
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='../node_modules/vue/dist/vue.js'></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        // 由于vue会最大化的对组件进行复用
+        // 所以切换时原来的值会被保存
+        // 使用key可以改变
+        new Vue({
+            el:'#app',
+            template:`
+                <div>
+                    <div v-if="loginType==='username'">
+                        用户名<input placeholder='请输入用户名'  key='usernameInput'>    
+                    </div>
+                    <div v-else>
+                        邮箱<input placeholder='请输入email'  key='emailInput'>    
+                    </div>   
+                    <button @click='changeType'>change</button>  
+                </div>
+            `,
+            data(){
+                return{
+                    username:'',
+                    email:'',
+                    loginType:'username'
+                }
+            },
+            methods:{
+                changeType(){
+                   this.loginType =  this.loginType==='username'?'email':'username';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

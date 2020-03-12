@@ -9,9 +9,9 @@ let router = new Router();
 // 处理响应
 router.get('/lunbo',(ctx)=>{
     ctx.body = [
-        {imgId:1,url:'../../../static/img/bg.jpg'},
-        {imgId:2,url:'../../../static/img/bgi.jpg'},
-        {imgId:3,url:'../../../static/img/mamamoo.jpg'},
+        {imgId:1,url:'./static/img/bg.jpg'},
+        {imgId:2,url:'./static/img/bgi.jpg'},
+        {imgId:3,url:'./static/img/mamamoo.jpg'},
         
     ]
 })
@@ -21,7 +21,7 @@ app.use(async (ctx,next)=>{
     //跨域问题的处理
     //options复杂跨域会请求一个预检测
     // console.log(ctx.request.header.origin);
-    ctx.response.set("Access-Control-Allow-Origin", "*");
+    ctx.response.set("Access-Control-Allow-Origin", "http://127.0.0.1");
     ctx.response.set('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild')
     ctx.response.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE,OPTIONS");
     ctx.response.set("Content-Type", "application/json;charset=utf-8");

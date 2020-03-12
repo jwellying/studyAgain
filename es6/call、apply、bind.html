@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // (function fn(){
+        //     let a = 80;
+        //     setTimeout(()=>{
+        //         console.log(this);
+                
+        //         console.log(a);
+                
+        //     })
+        // })();
+
+        // bind改变this
+        // var obj={
+        //     age:15,
+        //     run:function(){
+        //         console.log(this);
+        //         setTimeout((function(){
+        //             console.log(this.age);
+        //         }).bind(this),50)
+        //     }
+        // }
+        // obj.run();
+        // call改变指向
+        var obj={
+            age:15,
+            run:function(){
+                console.log(this);
+                setTimeout((function(){
+                    console.log(this.age);
+                }),50)
+            }
+        }
+        var fn = obj.run;
+        fn.call(obj);
+        fn.apply(obj);
+    </script>
+</body>
+</html>
