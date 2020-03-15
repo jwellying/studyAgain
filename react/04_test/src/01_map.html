@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+ 
+</head>
+<body>
+    <div id='root'></div>
+    <script type="text/babel">
+    class Son extends React.Component {
+        render() {
+            return(
+                <div>
+                    我是子组件
+                    {/* 主要用于排除空节点和null */}
+                    {React.Children.map(this.props.children,(v)=>{
+                        return <div>{v}</div>;
+                    })} 
+                </div>
+            )
+        }
+    }
+    class App extends React.Component {
+        
+        render() {
+            let obj = ['',1,undefined,3];
+            return (
+                <div>
+                    <div>我是App组件</div>
+                    <Son>{obj}</Son>
+                </div>
+                
+            )
+        }
+    }
+    ReactDOM.render(<App/>,document.getElementById('root'));
+
+   
+
+    </script>
+</body>
+</html>
