@@ -1,0 +1,18 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // process.nextTick(() => {console.log('nextTick')})
+        Promise.resolve().then(()=> {console.log('promise1');}).then(()=> {
+        console.log('promise2');
+        });
+        // setImmediate(() => {console.log('setImmediate')})
+        console.log('end')
+
+    </script>
+</body>
+</html>

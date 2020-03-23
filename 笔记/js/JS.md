@@ -273,41 +273,6 @@ this指向不确认由上级作用域决定
 3、数组转成字符：join()；
 4、字符串转换成数组：split()；
 
-## 函数的原型链与继承
-### 普通对象与函数对象
-在JS中万物皆是对象，当然对象也分为**普通对象和函数对象**
-**Object和Function是JS自带的函数对象**
-当我们new一个function的时候，我们可以发现，它自带了一个prototype属性；
-而当我们new一个object的时候，他的原型实例是通过__proto__来进行访问的；
-**由此我们可以知道只有通过Function构造的才是函数对象，才能通过prototype属性访问到其原型实例**
-**而其他的产生对象都是一个普通对象，我们只能通过__proto__访问其原型实例**
-```js
-    // Person是一个函数对象
-    function Person(name,height){
-            this.name = name;
-            this.height = height;
-        }
-    // person是一个普通对象
-    var person = new Person('jsck',180);
-    console.log(Person.prototype);
-    console.log(person.__proto__);
-    // 以下全为true
-    console.log(Person.prototype);
-    console.log(person.__proto__);
-    console.log(Person.prototype==person.__proto__);
-    console.log(Person.prototype.constructor===Person);
-    console.log(person.__proto__.constructor===Person);
-    console.log(Person.prototype.__proto__===Object.prototype);
-    console.log(Object.__proto__===null);
-     // 比较特殊
-    console.log(Function.prototype);     
-        
-```
-### 继承的四种方式
-见文件
-**补充细节点**
-在for...in或者直接in遍历时，会把原型上的属性方法一同遍历出来
-而使用hasOwnProprety检测本身的属性和方法
 
 ## 闭包
 ### 什么是闭包

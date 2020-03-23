@@ -1,0 +1,90 @@
+# 框架的组件化思想
+实现组件的可复用
+# 组件化的第一关
+组件间的传值
++ 父传子
+方法一：props属性向下传值
+props属性的使用体现了vue中单向数据流的应用
+```
+//父组件
+<child :data='msg'></child>
+//子组件
+不带参数校验
+props:['data']
+带参数检验：
+props:{
+    data:String
+}
+
+```
+方法二：给子组件绑定ref属性获取
+```
+父组件
+<child ref='child'></child>
+mouted(){
+    console.log(this.$refs.child.data);
+}
+```
+方法三：通过$children属性
+mouted(){
+    console.log(this.$children[0]);
+}
+但是不推荐使用，官方文档指出不能保证子组件的顺序
++ 子传父
+事件监听的方式
+```
+子组件中
+<button @click='send'></button>
+methods:{
+    send(){
+        this.$emit('sendData','来自子组件的顺序')
+    }
+}
+父组件中
+<child @sendData='receive($event)'></child>
+methods:{
+    receive(e){
+        console.log(e)
+    }
+}
+```
+一直都存在的误区：子传父是子传递父监听
+但是其实并不是，无论是传递还是监听都是挂在子组件本身的
++ 兄弟传值
+通过共同的父亲来进行
+```
+子组件1
+<div @click='send'>son1</div>
+methods:{
+    send(){
+        this.$parent.$emit('callChild','data');
+    }
+}
+子组件2
+created(){
+    this.$parent.$on('callChild',(e)=>{
+        console.log('receive');
+        console.log(e);
+    })
+}
+```
+总结
+父传子
++ props
++ ref
++ $parent
+子传父
++ $emit()|$on
+注意点：参数的传递
+兄弟组件
++ $parent
++ $root
+npm install vue-bus
++ $bus
+    main.js中
+    import Vue from 'vue';
+    import VueBus from 'vue-bus';
+    Vue.use(VueBus);
++ vuex
+祖代传值
++ provide inject

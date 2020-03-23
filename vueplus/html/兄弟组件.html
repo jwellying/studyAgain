@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue/01_vue/node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var child1 = {
+            template:`
+                <div @click='callBrother'>我是child1</div> 
+            `,
+            methods:{
+                callBrother(){
+                    this.$parent.$emit('call','hello brother');
+                }
+            }
+        }
+        var child2 = {
+            template:`
+                <div>我是child2</div> 
+            `,
+            created(){
+                this.$parent.$on('call',function(e){
+                    console.log('receive');
+                    console.log(e);
+                    
+                    
+                })
+            }
+        }
+        var App = {
+            template:`
+            <div>
+                <div>我是app组件</div>
+                <child1></child1>
+                <child2></child2>
+            </div>
+
+
+                
+            `,
+            components:{
+                child1,
+                child2
+            }
+        }
+        new Vue({
+            el:'#app',
+            template:'<App></App>',
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>

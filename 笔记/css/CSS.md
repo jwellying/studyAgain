@@ -349,3 +349,5 @@ column-span: all 应当总是会创建一个新的格式化上下文，即便具
 
 ## Flex伸缩布局
 ## css3动画
+
+# display:none和visibility:hide

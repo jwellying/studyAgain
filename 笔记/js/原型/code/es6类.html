@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/babel">
+        // 需求：实现两个类Person和Student
+        // 函数的实现方式
+        // function Person(name){
+        //     this.name = name;
+        //     this.printName = function(){
+        //         console.log(`hello!my name is ${this.name}`);
+        //     }
+        // }
+        // Person.prototype.allowMethod = function(){
+        //     console.log('共享的方法');
+        // }
+
+        // function Student(name,score){
+        //     Person.call(this,name);
+        //     this.score = score;
+        //     this.printScore = function(){
+        //         console.log(`my score is ${this.score}`);
+        //     }
+        // }
+        // Student.prototype = new Person();
+        
+        // let stu = new Student('jack',180);
+        // stu.allowMethod();
+        // stu.printScore();
+        // 类的实现方式
+        class Person {
+            constructor(name){
+                this.name = name;
+            }
+            printName(){
+                console.log('this is my name');
+                
+            }
+            allowMethod(){
+                console.log('我是共享方法');
+            }
+        }
+        class Student {
+            constructor(name,score){
+                super(name);
+                this.score = score;
+            }
+            printScore() {
+                console.log('This is printScore');
+            }
+        }
+        let stu = new Student('rose',180);
+        let person = new Person('jack');
+        stu.printScore();
+        console.log(stu.allowMethod===person.allowMethod);//true
+        
+    </script>
+</body>
+</html>

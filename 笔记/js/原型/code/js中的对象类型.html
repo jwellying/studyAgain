@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 普通对象
+        let obj = {name:'jack'};
+        console.log(typeof obj);
+        console.log(obj.__proto__);
+        console.log(obj.prototype);
+        
+        
+        // 函数对象
+        // 普通函数对象
+        let fn = function(){
+            console.log(111);
+        }
+        console.log(typeof fn);
+        console.log(`我是普通函数的__proto__:`);
+        console.log(fn.__proto__);
+        
+        console.log(`我是普通函数的prototype:`);
+        console.log(fn.prototype);
+        
+        
+        // 构造函数对象
+        function Person(name){
+            this.name = name;
+        }
+        console.log(typeof Person);
+        console.log(`我是构造函数本身的prototype:`);
+        console.log(Person.prototype);
+        
+        console.log(`我是构造函数本省的__proto__:`);
+        console.log(Person.__proto__);
+        
+        // 构造函数生成的对象
+        let p1 = new Person('jack');
+        console.log(typeof p1);
+        console.log(`我是构造函数生成对象的prototype:`);
+        console.log(p1.prototype);
+        
+        console.log(`我是构造函数生成对象的__proto__:`);
+        console.log(p1.__proto__);
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../Vue/node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'></div>
+    <script>
+        var son = {
+            template:`
+            <div>
+               <div>我是son组件{{data}}</div>
+               <button @click='send'>向父组件传值</button>     
+            </div>
+            
+             `,
+            data(){
+                return{
+                    son:'son'
+                }
+            },
+            created(){
+                console.log('son created');
+                
+            },
+            mounted(){
+                console.log('son mounted');
+                
+            },
+            props:['data'],
+            methods:{
+                send(){
+                    this.$emit('sendData','来自子组件的数据');
+                }
+            }
+        }
+        var App = {
+            template:`
+            <div>
+                <div>我是app组件</div>
+                <son :data='msg' ref='sdata' @sendData='receive($event)'></son>
+            </div>
+                
+            `,
+            components:{
+                son
+            },
+            created(){
+                console.log('app created');
+                
+            },
+            mounted(){
+                console.log('app mounted');
+                console.log(this.$refs.sdata.son);
+                console.log(this.$children[0].son);
+                
+                
+            },
+            data(){
+                return{
+                    msg:'hello son'
+                }
+            },
+            methods:{
+                receive(e){
+                    console.log(e);
+                    
+                }
+            }
+        }
+        new Vue({
+            el:'#app',
+            template:'<App></App>',
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>

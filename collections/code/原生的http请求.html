@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建对象
+        var xhr = new XMLHttpRequest();
+        // 建立连接 
+        // 请求方式 url 同步还是异步
+        // true：异步(默认) false：同步
+        xhr.open('POST','/');
+        // ajax.setRequestHeader("Origin",STATIC_PATH); 
+        // ajax.setRequestHeader("Access-Control-Allow-Origin","*");   
+        // 响应类型    
+        // ajax.setRequestHeader('Access-Control-Allow-Methods', '*');    
+        // 响应头设置    
+        // ajax.setRequestHeader('Access-Control-Allow-Headers', 'x-requested-with,content-type');
+        // 创建数据对象
+        let data = new FormData();
+        data.append(0,'123');
+        console.log(data);
+        
+        xhr.onreadystatechange = function(){
+            // 0: 请求未初始化
+            // 1: 服务器连接已建立
+            // 2: 请求已接收
+            // 3: 请求处理中
+            // 4: 请求已完成，且响应已就绪
+            if(xhr.readyState===4&&xhr.status===200){
+                console.log('success');
+                let res = Request.responseText;
+                
+            }else{
+                console.log('error');
+                
+            }
+        }
+    </script>
+</body>
+</html>

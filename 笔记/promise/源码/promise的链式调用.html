@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        new Promise((resolve,reject)=>{
+            resolve(1);
+        }).then(value=>{
+            console.log('任务一的结果：' + value);
+            // 如果要执行一个同步的操作结果直接return就可以了
+            return 2;
+        }).then(value=>{
+            console.log('任务二的结果：' + value);
+            // 如果要返回一个异步操作的结果
+            // 一定要通过一个新的promise
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                    resolve(3);
+                },1000)
+            })
+        }).then(value=>{
+            console.log('任务三的结果：' + value);
+            console.log('ok!done!');
+            
+        })
+        // 包括promise中一个异常穿透的概念，当我们处理一系列.then事件时，一旦有一个报错，
+        // 将穿透所有then事件，走到catch事件中
+    </script>
+</body>
+</html>

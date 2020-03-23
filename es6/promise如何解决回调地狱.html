@@ -25,6 +25,10 @@
                 },1000)
             })
         }
+        setTimeout(()=>{
+            console.log('什么时候轮到我');
+            
+        },3000)
         fn1().then(()=>{
             return fn2();
         }).then(()=>{
@@ -36,6 +40,8 @@
                 console.log('完成');
             })
         })
+        console.log('第一');
+        
     </script>
 </body>
 </html>

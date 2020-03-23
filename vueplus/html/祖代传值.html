@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue/node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        var son = {
+            template:`
+                <div>
+                    <div>我是son组件</div>
+                    <slot>hhh</slot>
+                    <slot name='header'></slot>
+                    <slot name='footer'></slot>
+                    <h2>{{data}}</h2>
+                    <h2>{{callson()}}</h2>
+                </div>
+            `,
+            inject:['data','callson']
+        }
+        var App = {
+            template:`
+                <div>
+                    <div>我是app组件</div>   
+                    <son>
+                        <template v-slot:header>header</template>
+                        <template v-slot:default>content</template>
+                        <template v-slot:footer>footer</template>
+                    </son> 
+                </div>
+            `,
+            components:{
+                son
+            }
+        }
+        new Vue({
+            el:'#app',
+            template:`
+                <App />
+            `,
+            provide:{
+                data:'hello my child',
+                callson(){
+                    return 'hello my son'
+                }
+            },
+            components:{
+                App
+            }
+        })
+    </script>
+</body>
+</html>
