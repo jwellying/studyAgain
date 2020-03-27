@@ -1,11 +1,15 @@
 <template>
   <div>
+    <div>
     <mt-swipe :auto='4000' class="lunbo" >
       <mt-swipe-item v-for='(img) in imgs' :key="img.id">
         <img :src='img.url' alt="">
       </mt-swipe-item>
     </mt-swipe>
     <myUl></myUl>
+    </div>
+    <div>{{test}}</div>
+    <p>{{test2}}</p>
   </div>
 </template>
 
@@ -14,7 +18,9 @@ export default {
     name:'home',
     data(){
       return{
-        imgs:[]
+        // imgs:[],
+        test:'12',
+        test2:'34'
       }
     },
     created(){
@@ -27,6 +33,8 @@ export default {
         console.log(err);
         
       })
+      console.log(this.$data);
+      
     }
 }
 </script>
