@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function new_instance_of(leftVaule, rightVaule) { 
+            
+            let rightProto = rightVaule.prototype; // 取右表达式的 prototype 值
+            leftVaule = leftVaule.__proto__; // 取左表达式的__proto__值
+            while (true) {
+                if (leftVaule === null) {
+                    return false;	
+                }
+                if (leftVaule === rightProto) {
+                    return true;	
+                } 
+                leftVaule = leftVaule.__proto__ 
+            }
+        }
+        let arr = [];
+        console.log(Object.__proto__);
+        
+        console.log(new_instance_of(arr,Array));
+        console.log(new_instance_of(Object,Object));
+        console.log(new_instance_of(Object,Function));
+        console.log(new_instance_of(Function,Object));
+        
+    </script>
+</body>
+</html>

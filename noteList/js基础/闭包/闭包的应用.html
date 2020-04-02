@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //模块化思想
+        var s=(function shop(){
+            var leastPrice=1000;
+            var total=0;
+            return{
+                buy:function(price){
+                    total+=price;
+                },
+                pay:function(){
+                    if(total<leastPrice){
+                        console.log("请继续购物！");
+                    }else{
+                        console.log("欢迎下次光临！");
+                    }
+                },
+                editPrice:function(id,price){
+                    if(id==888){
+                        leastPrice=price;
+                        console.log("最低消费金额修改为",leastPrice);
+                    }else{
+                        console.log("权限不足");
+                    }
+                }
+            }
+        })();
+        //闭包函数就是函数内部的函数，当我们需要保护一个变量时，我们将变量放在函数作用域内，
+        //而闭包函数也可以让外部访问到变量
+        //模块化思想
+    </script>
+    
+</body>
+</html>

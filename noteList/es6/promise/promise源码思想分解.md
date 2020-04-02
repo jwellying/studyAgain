@@ -1,0 +1,7 @@
+首先promise的三个状态是pending、resolved、rejected
+一个data属性用来保存promise的结果
+一个callbacks属性用来保存回调函数
+一个state用来保存状态
+promise的方法有
+原型上的方法then方法、catch方法
+

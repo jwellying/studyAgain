@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //   //举例一
+        //   var name = "tom"
+        // function fn1(){
+        //     var name = "jack";
+        //     console.log(name); //jack
+        // }
+        // fn1();
+        // //举例二
+        // function fn2(){
+        //     console.log(name); //undefined
+        //     var name = "jack";
+        // }
+        // fn2();
+        // //举例三
+        // function fn3(){
+        //     return function(){
+        //         console.log(`这是例三的结果：${name}`);
+        //     }
+        //     var name = "jack";
+        // }
+        // var f = fn3();
+        // f();
+        //函数f被赋值为匿名函数，匿名函数在fn3内编写，所以f的上级作用域为fn3
+    </script>
+    <script>
+        //举例四
+        function fn4(f){
+            f();
+            var name = 'mike';
+        }
+        fn4(function(){
+            // var name = 'jack';
+            console.log(name);
+            console.log(this);
+            
+            //报错
+            //分析age变量
+            //1.查找当前作用域，无法找到
+            //2.查找上一级作用域，上一级作用域是谁呢
+            //3.上一级作用域不是看谁调用它，而是看它在哪里编写
+        })
+        //举例五
+        // function fn5(){
+        //     return {
+        //         say:function(){
+        //             console.log(name);
+        //             var name = "jack";
+        //         }
+        //     }
+        // }
+        // var f = fn5();
+        // f.say();
+    </script>
+</body>
+</html>

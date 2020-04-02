@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // process.nextTick(() => {console.log('nextTick')})
+        // Promise.resolve().then(()=> {console.log('promise1');}).then(()=> {
+        // console.log('promise2');
+        // });
+        // // setImmediate(() => {console.log('setImmediate')})
+        // console.log('end')
+
+        console.log('script start')
+        async function async1() {
+        await async2()
+        console.log('async1 end')
+        }
+        async function async2() {
+        console.log('async2 end') 
+        }
+        async1()
+        setTimeout(function() {
+        console.log('setTimeout')
+        }, 0)
+        new Promise(resolve => {
+        console.log('Promise')
+        resolve()
+        })
+        .then(function() {
+            console.log('promise1')
+        })
+        .then(function() {
+            console.log('promise2')
+        })
+        console.log('script end')
+
+        //  node中
+        // timers： 定时器setTimeout和seInterval的执行，将callback加入队列中。
+        // poll： 轮循，i/o，回调，fs.readFile()。
+        // check： setImmediate的callback执行。
+        // node中会将宏任务全执行完再执行微任务，node12中好像改善了
+        // process.nextTick()优先执行
+    </script>
+</body>
+</html>

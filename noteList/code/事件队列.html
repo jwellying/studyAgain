@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">我会是第几个</div>
+    <script>
+        // 由此可以看出异步事件即使不耗时也会被放入事件队列中
+        // 当所有同步事件（js默认不耗时的事件）执行完毕
+        // 异步事件才会被放入主线程执行
+        var APP = document.querySelector('#app');
+        APP.onclick = function(){
+            console.log('clicked');
+        };
+        console.log("1");
+        setTimeout(function() {
+            console.log("2")
+        }, 1000);
+        setTimeout(function() {
+            console.log("3")
+        }, 0);
+
+        setTimeout(function() {
+            console.log("4")
+        }, 2000);
+        console.log("5");
+        // 1
+        // 5
+        // 2
+        // 3
+        // 4
+    </script>
+</body>
+</html>

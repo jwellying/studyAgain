@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+            float: left;
+            /* margin-bottom: 100px; */
+        }
+        #box2{
+            height: 100px;
+            width: 120px;
+            background-color: red;
+            float: left;
+            /* margin-top: 100px; */
+        }
+        #box3{
+            height: 160px;
+            width: 150px;
+            background-color: yellow;
+            /* float: left; */
+            /* margin-top: 100px; */
+        }
+        /* .clearfix::after{
+            content: '.';
+            clear: both;
+            display: block;
+            height: 0;
+            visibility: hidden;
+        } */
+        .clearfix:after,.clearfix:before{
+        content: "";
+        display: table;
+        }
+        .clearfix:after{
+            clear: both;
+        }
+        .clearfix{
+            *zoom: 1;
+        }
+    
+    </style>
+</head>
+<body>
+    <!-- 方法一 -->
+    <!-- <div id="box1"></div>
+    <div id='null'></div>
+    <div id="box2"></div> -->
+    <!-- 方法二 -->
+    <!-- <div style="overflow:hidden">
+        <div id="box1"></div>
+        <div id="box2"></div>
+    </div> -->
+    <!-- 方法三 -->
+    <div  class="clearfix">
+        <div id="box1"></div>
+        <!-- <div id="box2"></div> -->
+    </div>
+    <div id='box3'></div>
+</body>
+</html>

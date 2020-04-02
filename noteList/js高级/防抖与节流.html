@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text" placeholder="请输入内容" id='test'>
+    </div>
+    <!-- <script>
+        // 防抖函数
+        //按钮提交场景：防止多次提交按钮，只执行最后提交的一次
+        //服务端验证场景：表单验证需要服务端配合，只执行一段连续的输入事件的最后一次，
+        // 还有搜索联想词功能类似
+        const debounce = (fn, delay) => {
+            let timer = null;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    fn.apply(this, args);
+                }, delay);
+            };
+        };
+    </script>
+    <script>
+        // 节流函数
+        // 拖拽场景：固定时间内只执行一次，防止超高频次触发位置变动
+        //缩放场景：监控浏览器resize
+        // 动画场景：避免短时间内多次触发动画引起性能问题
+
+        const throttle = (fn, delay = 500) => {
+            let flag = true;
+            return (...args) => {
+                if (!flag) return;
+                flag = false;
+                setTimeout(() => {
+                    fn.apply(this, args);
+                    flag = true;
+                }, delay);
+            };
+        };
+    </script> -->
+    <script>
+        // 防抖函数
+        // 用户在规定的时间内如果多次点击，会清空之前的时间，按最后一次点击开始响应
+        function debounce(fn){
+            let timer = null;
+            return function(){
+                clearTimeout(timer);
+                timer = setTimeout(()=>{
+                    fn.apply(this,arguments)
+                },500)
+            }
+        }
+        function say(){
+            console.log('防抖成功');
+            
+        }
+        // 测试防抖
+        var input = document.querySelector('#test');
+        input.addEventListener('input',debounce(say));
+        
+        // 节流
+        function throttle(fn){
+            let flag = true;
+            return function(){
+                if(!flag) return;
+                setTimeout(()=>{
+                    flag = false;
+                    fn.apply(this,arguments);
+                })     
+            }
+        }
+        
+    </script>
+</body>
+</html>

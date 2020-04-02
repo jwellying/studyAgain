@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //第一种:函数调用
+        // var age=18;
+        // var p={
+        //     age:15,
+        //     say:function(){
+        //         console.log(this.age);
+        //     }
+        // }
+        // var f1=p.say;
+        // f1();    //18
+        // //f1()属于函数调用，函数内部的this指向window
+        // //第二种：方法调用
+        // var age=18;
+        // var p={
+        //     age:15,
+        //     say:function(){
+        //         console.log(this.age);
+        //     }
+        // }
+        // p.say(); //15
+        // //p.say()属于方法调用，函数内部的this指向实例p
+        // //另一例子
+        // function run(){
+        //     console.log(this.speed);
+        // }
+        // var speed=50;
+        // var tom={
+        //     speed:100,
+        //     running:run
+        // }
+        // tom.running();
+        // //方法调用时this->tom对象
+        // //通过new方法来调用的就是构造函数方法调用
+        // function fn(name){
+        //     this.name=name;
+        // }
+        // var f1=new fn("tom");
+        // console.log(f1.name);//this指向实例f1
+        //更复杂的例子
+        function Jquery(){
+            var _init=Jquery.prototype.init();
+            // // console.log(Jquery.prototype.init.prototype);
+            // // console.log(_init.prototype);
+            return _init;
+        }
+        Jquery.prototype={
+            constructor:Jquery,
+            length:100,
+            init:function(){
+                console.log(this.length);
+            }
+        }
+        // new Jquery()._init();//100
+        new Jquery();//undefined
+        //_init.prototype指向的是init这个普通函数，
+        //而Jquery.prototype指向的是Jquery这个构造函数
+        //所以_init不能访问到Jquery.prototype里的属性
+        //总结（方法调用方式与构造函数方法调用的区别）
+        //方法调用和构造方法时this都指向调用对象
+        //方法调用时属性查找会从调用对象本身进行查找
+        //而构造方法调用会先从本身属性寻找，如果没找到再从原型对象中寻找
+        var name = 'window';
+        var obj = {
+            name:'obj',
+            getName:function(fn){
+                return fn;
+            }
+        }
+        // 函数调用
+        var o = obj.getName(function(){
+            console.log(this.name);
+        });
+        o();
+        // 方法调用
+        // obj.getName().call(obj);
+    </script>
+</body>
+</html>

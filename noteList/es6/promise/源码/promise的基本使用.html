@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        setTimeout(()=>{
+            console.log('一个简单的异步');
+            
+        },1000)
+       const promise = new Promise((resolve,reject)=>{
+        //    执行器函数是一个同步的回调函数
+        console.log('excutor是同步的回调函数');
+           setTimeout(()=>{
+            let time = Date.now();
+            if(time %2 === 0){
+                resolve('成功，time='+time);
+            }else{
+                reject('失败，time='+time);
+            }
+           },1000)
+       })
+       console.log('执行器之后');
+        //发现问题只有当执行器函数中是一个同步操作时，
+        // then方法才会被优先执行   
+        // 为什么呢？ 
+
+       promise.then((value)=>{
+        console.log(value);
+        
+       },(error)=>{
+        console.log(error);
+        
+       })
+        
+    </script>
+</body>
+</html>

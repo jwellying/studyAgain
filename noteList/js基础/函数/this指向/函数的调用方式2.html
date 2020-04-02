@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text">
+        //上下文调用方式有3种：call、apply、append
+        //call、apply在使用后立刻执行了函数并且为其绑定了this
+        //而bind执行后不会执行函数，只是改变了this的指向
+        function create(){
+            console.log(this);
+        }
+        var f1=create;
+        f1.call([1,2,3]);
+        f1.call({age:18});
+        f1.call(1);
+        f1.call("123");
+        f1.call(true);
+        f1.call(null);
+        f1.call(undefined);
+        //当是使用call方法调用函数时
+        //如果第一个参数是对象类型，那么函数的this指向该对象
+        //如果是null、undefined类型，那么函数的this指向window对象
+        //如果是数字、布尔值、字符串，则this指向对应的构造函数的实例
+        //bind方法
+        var obj={
+            age:15,
+            run:function(){
+                console.log(this);
+                setTimeout((function(){
+                    console.log(this.age);
+                }).bind(this),50)
+            }
+        }
+        obj.run();
+        //若没有用bind更改this的指向，由于setTimeOut函数中this指向window，
+        //打印结果为undefined
+        //因为setTimeOut中的回调函数是由浏览器调用的
+    </script>
+    <script>
+        function speed(){
+            console.log(this.speed);
+        }
+        var speedBind = speed.bind({speed:100});
+        //通过bind函数产生一个新的函数speedBind，同时该函数的this指向bind内的对象
+        speedBind(); //100
+       
+    </script>
+</body>
+</html>
