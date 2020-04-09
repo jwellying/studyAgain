@@ -2,8 +2,8 @@
 
 ## 了解HTML5
 
-```tex
- ☞HTML5属于上一代HTML的新迭代语言，设计HTML5最主要的目的是为了在移动设备上支持多媒体！！！
+```text
+ ☞ HTML5属于上一代HTML的新迭代语言，设计HTML5最主要的目的是为了在移动设备上支持多媒体！！！
    例如： video 标签和 audio 及 canvas 标记
  
  ☞ 新特性：
@@ -32,8 +32,7 @@
   <aside></aside>
   <nav></nav>
   <section></section>
-  ....
-  http://www.w3school.com.cn/html/html5_semantic_elements.asp
+  
 ```
 
 ### 多媒体标签及属性介绍
@@ -97,17 +96,6 @@
     *placeholder ： 占位符  （提示信息）
     *required：    必填项
 
-作业：
-	◆自己解决required自定义提示信息
-	◆预习和复习
-
-
-留下的疑问：
-	◆ 如何修改表单控件中的默认提示信息 
-		 1. 表单验证触发oninvalid事件
-		 2. 通过setCustomValidity方法设置修改内容
-```
-
 ## HTMl5中的API
 
 ### 获取页面元素及类名操作和自定义属性
@@ -134,7 +122,7 @@
 
 
 
-  ☞ 自定义属性  			（小案例分析体验自定义属性）
+  ☞ 自定义属性  		
   
 	 data-自定义属性名
 	 备注：
@@ -514,9 +502,5 @@ ctx.rotate(弧度)
        x,y 为倍数  例如： 0.5  1
 ```
 
-## 作业
 
-1. 制作一个在线播放器（视频，音乐）
-2. 练习Canvas中的api
-3. H5中的API熟练一下
 

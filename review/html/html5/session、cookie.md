@@ -1,21 +1,41 @@
 # cookie
-http的连接是无状态的，也就是说第一次建立连接之后，当再次请求时，服务端并不能辨别用户，所以我们需要cookie；
+
+### cookie的诞生
+由于http的连接是无状态的，也就是说第一次建立连接之后，当再次请求时，服务端并不能辨别用户，所以我们需要能够标记用户状态的标识-->**cookie**
 当客户端第一次请求服务器时，服务器返回一个cookie，客户端保存在本地存储中，当第二次请求时会自动发送给服务器；
-cookie可以共享与同一个域名下的所有页面，但是不能共享于多个域名下的多个页面
-# session
-session和cookie的作用有点类似，都是为了存储用户相关的信息。不同的是，cookie是存储在本地浏览器，而session存储在服务器。存储在服务器的数据会更加的安全，不容易被窃取。但存储在服务器也有一定的弊端，就是会占用服务器的资源;
-# session 和 cookie 的结合使用
-1、存储在服务端：通过cookie存储一个session_id，然后具体的数据则是保存在session中。如果用户已经登录，则服务器会在cookie中保存一个session_id，下次再次请求的时候，会把该session_id携带上来，服务器根据session_id在session库中获取用户的session数据。就能知道该用户到底是谁，以及之前保存的一些状态信息。
-2、将session数据加密，然后存储在cookie中。
-# cookie和session各自的利弊
-**cookie**
+cookie可以共享与**同一个域名下**的所有页面，但是不能共享于多个域名下的多个页面 ---> **即cookie不跨域**
+
+### cookie的属性
+- name      字母数字或其他可识别字符
+- value     内容字段(需要URL编码？？？)
+- domain    指定当前cookie的作用域名
+- path      路径
+- expires   绝对时间缓存
+- max-age   相对时间缓存    (默认cookie的生命周期是一个会话周期)
+- secure    设置为true后，仅允许在https和ssl安全协议下
+- httpOnly  设置为true后，不允许js脚本读取cookie，可以防止xss攻击
+
+### cookie的弊端
 1、cookie不是很安全,别人可以分析存放在本地的cookie并进行cookie 欺骗,如果主要考虑到安全应当使用session；
 2、cookie有长度限制
 3、cookie可能会被禁用
-**session**
+
+# session
+
+### session的简介
+session和cookie的作用有点类似，都是为了存储用户相关的信息。不同的是，cookie是存储在本地浏览器，而session存储在服务器。存储在服务器的数据会更加的安全，不容易被窃取。但存储在服务器也有一定的弊端，就是会占用服务器的资源;
+
+### session的弊端
 1、session会在一定时间内保存在服务器上.当访问增多,会比较占用你服务器的性能,如果主要考虑到减轻服务器性能方面,应当使用cookie
 2、session没有长度限制，并且比较安全；
+
+### session 和 cookie 的结合使用
+1、存储在服务端：通过cookie存储一个session_id，然后具体的数据则是保存在session中。如果用户已经登录，则服务器会在cookie中保存一个session_id，下次再次请求的时候，会把该session_id携带上来，服务器根据session_id在session库中获取用户的session数据。就能知道该用户到底是谁，以及之前保存的一些状态信息。
+2、将session数据加密，然后存储在cookie中。
+
+
 ## 应用
+
 **自动登录**
 当用户在某个网站注册后，就会收到一个惟一用户ID的cookie。客户后来重新连接时，这个用户ID会自动返回，
 服务器对它进行检查，确定它是否为注册用户且选择了自动登录，从而使用户务需给出明确的用户名和密码，就可以访问服务器上的资源。

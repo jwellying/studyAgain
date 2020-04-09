@@ -14,6 +14,8 @@ vue通过 `$`向外暴露实例对象或方法
 + updated()          data更新后
 + activated()        结点有效时
 + deactivated()      结点无效时(配合keep-alive可以实现组件的缓存)
++ beforeDestroy()    实例被销毁前(可以用于计时器的销毁、$on的绑定也需要在组件销毁之前解绑、事件解绑如scroll、mouseover)
++ destroyed()        实例被销毁
 
 # v-if和v-show
 v-if不会创建结点，只会为结点预留一个空位

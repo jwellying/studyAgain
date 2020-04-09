@@ -8,16 +8,16 @@
 <!-- 虚拟dom -->
 createElement(){
     return  {
-    tag:'div',
-    data:{class:'item'},
-    children:[
-        {
-            tag:'p',
-            data:{class:'text'},
-            children:['text-content']
-        }
-    ]
-}
+        tag:'div',
+        data:{class:'item'},
+        children:[
+            {
+                tag:'p',
+                data:{class:'text'},
+                children:['text-content']
+            }
+        ]
+    }   
 }
 ```
 虚拟dom为什么高效？
