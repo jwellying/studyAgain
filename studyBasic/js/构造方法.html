@@ -18,6 +18,18 @@
             console.log(person);
             // 判断一个实例是否为某构造函数的实例
             console.log(person instanceof Person);  //true
+            console.log('--------------');
+            function G(name,fn){
+                this.name = name;
+                this.fn = fn;
+            }
+            let o1 = new G('jack',function () {
+                console.log(1);
+            })
+            let o2 = new G('rose',function () {
+                console.log(2); 
+            })
+            console.log(o1.fn === o2.fn);
             
     </script>
 </body>

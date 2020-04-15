@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        Function.prototype.myCall = function(context){
+            // 获取调用call方法的函数，用this可以实现
+            // this代表了调用call方法的函数
+            // 将该函数作为对象的属性保定到对象上
+            // 但是我们不能改变对象，所以需要最后需要删除该函数
+            // 因为该方法最终会被删除，所以方法名随便取
+            // 如果传入为null，则指向window
+            context = context || window;
+            context.fn = this;
+            // 将传入的参数，拷贝一份
+            let args = [];
+            // 第一个参数是决定this指向的对象，所以从第二个参数开始遍历
+            for(let i = 1;i < arguments.length;i++){
+                args.push(arguments[i]);
+            }
+            // 执行函数
+            // context.fn(...args);
+            let result = context.fn(...args);
+            // 删除函数
+            delete context.fn;
+            // 返回执行结果
+            return result;
+
+        }
+
+        // 实例
+        function bar(name){
+            console.log(this.value);
+            console.log(name);
+            
+        }
+        var foo = {
+            value : 'hhh'
+        }
+        bar.myCall(foo,'jack'); //hhh
+        bar.myCall(null)
+        bar.myCall(Number)
+        bar.myCall({value:'jwellying'},'hhh')
+        // // 实际上经过call的转换后的代码
+        // var foo = {
+        //     value : 'hhh',
+        //     bar:function(){
+        //         console.log(this.value);
+        //     }
+        // }
+        
+
+    </script>
+    
+   
+</body>
+</html>

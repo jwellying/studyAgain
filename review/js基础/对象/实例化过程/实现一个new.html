@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name,age){
+            this.age = age;
+            this.name = name;
+        }
+        
+        function myNew(...args){
+            // 创建一个空对象
+            const obj = {};
+            // 定义constructor
+            const Constructor = args.shift();
+            // 定义原型链
+            obj.__proto__ = Constructor.prototype;
+            // 调用构造方法
+            const ret = Constructor.apply(obj,args);
+            // 返回ret
+            return typeof ret === 'object'? ret : obj;
+        }
+
+
+
+        // function objectFactory(...args) {
+        //     // 创建一个空的对象
+        //     const obj = {};
+        //     // 定义constructor
+        //     // shift方法返回删除的元素
+        //     const Constructor = args.shift();
+        //     console.log(Constructor);
+        //     // 定义原型链
+        //     obj.__proto__ = Constructor.prototype;
+        //     console.log(obj);
+        //     // 调用构造方法产生对象实例
+        //     const ret = Constructor.apply(obj, args);
+
+        //     return typeof ret === "object" ? ret : obj;
+        // }
+
+        let p2 = objectFactory(Person, 'cxk', '18');
+        console.log(p2);
+        
+    </script>
+</body>
+</html>

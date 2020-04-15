@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 模拟 apply，基本思想一致
+        // 在学习call和apply时
+        // apply有一个不同的点就是apply的参数必须是数组
+        Function.prototype.myApply = function(context,arr){
+            context = Object(context) || window;
+            context.fn = this;
+            let result;
+            if(!arr){
+                result = context.fn();
+            }else{
+                let args = [];
+                for(let i = 0;i < arr.length;i++){
+                    // 为什么这里需要用字符串拼接的方式呢？
+                    // 首先我们来看看这种方法打印出来的args长什么样
+                    args.push('arr['+i+']');
+                    // args.push(arr[i])
+                    // 与普通的数组参数添加不同的是，字符串拼接的方式，
+                    // 我们放进数组里面的是一个类数组对象
+                    // 而当我们给参数传值的时候，正是需要这样的一个类数组对象
+                    // 才能作为函数的参数
+                }
+                console.log(args);
+                // {0: "arr[0]",length: 1}
+                // 由于eval中接收一个字符串，所以我们再次使用字符串拼接的方式
+                // eval会自动执行传入的字符串中需要计算的逻辑，得出结果
+                // 同时他会调用args.toString方法，将类数组中的真正参数传递给函数
+                result = eval('context.fn('+args+')');
+
+            }
+            delete context.fn;
+            return result;
+
+        } 
+        
+        // 实例
+        function bar(name){
+            console.log(this.value);
+            console.log(name);
+            
+        }
+        var foo = {
+            value : 'hhh'
+        }
+        bar.myApply(foo,['jack']); //hhh
+        // bar.myCall(null)
+        // bar.myCall(Number)
+        // bar.myCall({value:'jwellying'},'hhh')
+    </script>
+</body>
+</html>

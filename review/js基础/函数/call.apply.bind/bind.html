@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 在实现之前首先明确一下bind的功能
+        // bind不会立即执行函数，而会返回一个新的函数
+        // 返回的新的函数的this指向可改变
+        // 总结来说就是返回一个函数，绑定this，传递预置参数
+        // bind返回的函数可以作为构造函数使用
+        // 故作为构造函数时应使得this失效，但是传入的参数依然有效
+        // 为什么this会失效呢？
+        // 因为this的指向存在几种影响
+        // new > 显示绑定 > 隐式绑定 > 默认绑定
+
+        Function.prototype.myBind = function(context){
+
+            if (typeof this !== "function") {
+                throw new Error("Function.prototype.bind - what is trying to be bound is not callable");
+            }
+
+            let self = this;
+            // bind传入的参数
+            let args = Array.prototype.slice.call(arguments,1);
+            let bindFunc = function(){
+                // 返回的函数传入的参数
+                let bindArgs = Array.prototype.slice.call(arguments);
+                // 将参数拼接执行
+                // 当bindFunc的this指向实例时，说明使用new构造
+                // 当使用普通函数的时候，此时的this应该指向的是window
+                return self.apply(this instanceof bindFunc?this:context,args.concat(bindArgs))
+            }
+            function fNOP(){}
+            // 修改原型
+            // bindFunc.prototype = this.prototype;
+            // 直接将this的原型赋值与bindFunc的原型绑定并不是最理想的状态
+            // 可以联想到继承
+            // 当子对原型上的方法改变时，父类的方法也会改变
+            // 所以更好的处理的方法是让子类原型继承父类的实例
+            fNOP.prototype = this.prototype;
+            bindFunc.prototype = new fNOP();
+            return bindFunc;
+        }
+
+        // 实例
+        function bar(name,age){
+            console.log(this.value);
+            console.log(name);
+            console.log(age);
+            
+        }
+        var foo = {
+            value : 'hhh'
+        }
+        let fn = bar.myBind(foo,'jack'); //hhh
+        fn(18);
+        let fn1 = new fn(10);
+        // console.log(fn1);
+        
+        // if (!Function.prototype.bind) {
+        //     Function.prototype.bind = function(oThis) {
+        //         if (typeof this !== 'function') {
+        //         // closest thing possible to the ECMAScript 5
+        //         // internal IsCallable function
+        //         throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+        //         }
+
+        //         var aArgs   = Array.prototype.slice.call(arguments, 1),
+        //             fToBind = this,
+        //             fNOP    = function() {},
+        //             fBound  = function() {
+        //             // this instanceof fBound === true时,说明返回的fBound被当做new的构造函数调用
+        //             return fToBind.apply(this instanceof fBound
+        //                     ? this
+        //                     : oThis,
+        //                     // 获取调用时(fBound)的传参.bind 返回的函数入参往往是这么传递的
+        //                     aArgs.concat(Array.prototype.slice.call(arguments)));
+        //             };
+
+        //         // 维护原型关系
+        //         if (this.prototype) {
+        //         // Function.prototype doesn't have a prototype property
+        //         fNOP.prototype = this.prototype; 
+        //         }
+        //         // 下行的代码使fBound.prototype是fNOP的实例,因此
+        //         // 返回的fBound若作为new的构造函数,new生成的新对象作为this传入fBound,新对象的__proto__就是fNOP的实例
+        //         fBound.prototype = new fNOP();
+
+        //         return fBound;
+        //     };
+        // }
+    </script>
+</body>
+</html>

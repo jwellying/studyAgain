@@ -1,7 +1,7 @@
 
 ## 盒子模型
-旧版IE：盒子=（内容+border+padding）统称为content
-新标准：盒子=content+padding+border
+旧版IE：盒子=（内容+border+padding）统称为content + margin
+新标准：盒子=content + padding+border+margin
 
 ## BFC(块级格式化上下文)
 ### 什么是BFC
@@ -29,7 +29,7 @@
 + float:left; 
 + position: absolute; 
 + position:fixed  
-### 定位的四种方式
+### 定位的五种方式
 #### static（默认）
 一般默认为static，不会脱离文档流
 #### relative
@@ -41,6 +41,15 @@
 **子绝父相**的应用:关键点在于子类绝对定位后，不占位置，又能绝对定位在父盒子中
 #### fixed
 定位元素在浏览器窗口是不移动的，脱离文档流；
+### sticky(粘性定位)
+很难给他定位是否脱离文档流，他是relative和fixed的结合体
+```css
+.box{
+    position:sticky;
+    top:0;
+}
+在我们滚动滚动条时，如果未触及顶部，元素是跟随文档流移动的，当元素触及顶部就脱离文档流，固定在顶部
+```
 
 ## 垂直水平居中
 + 行内元素 水平居中：text-align：center

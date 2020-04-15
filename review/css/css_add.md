@@ -18,6 +18,7 @@ opcity：0 --- 实质只是将元素变为透明，元素所占文档位置不�
 visibility：hidden --- 元素不可见，但仍然占文档空间，不可交互；
 diaplay：none --- 元素不再占文档空间，也不可交互；
 z-index：-9999 --- 本质其实是将元素在z轴方向的层级调到最下面，被其他元素覆盖而不可见 
+z-index只对设置了position的元素有效
 
 # display:none和visibility:hide区别
 + 使用display:none隐藏后的元素不再占据空间，点击事件失效；
@@ -25,3 +26,7 @@ z-index：-9999 --- 本质其实是将元素在z轴方向的层级调到最下�
 + visibility:hide具有继承性，子元素继承父元素，但对子元素设置visibility:visible子元素显示
 + visibility:hide对计数器没有影响
 + display:none会引起回流(重排)和重绘 visibility:hidden会引起重绘 
+
+## 为什么translate改变位置而不是使用传统的定位
+首先translate是transform的一个属性，它会通过浏览器创建一个GPU图层，从而不会引发回流或重绘，
+只会触发渲染中的复合；而使用定位会触发回流和重绘

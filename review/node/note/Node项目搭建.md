@@ -18,7 +18,7 @@ koa-router(处理路由) koa-bodyparser(处理文字信息) koa-session(session�
 + 处理响应部分的代码
 + 中间件使用列表(app.use(...))
 + 监听端口
-```node
+```js
     //获取对象
 const Koa = require('koa');
 const render = require('koa-art-template');

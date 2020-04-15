@@ -1,7 +1,13 @@
-## Node基础
+# Node基础
 
-### 为什么学习Node?
+## 为什么学习Node?
 
+* web服务器
+  * node可以创建开启一个web服务器
+* 命令行工具
+  * npm (node)
+  * git (c语言)
+  * hexo(node)
 * IO优势
   * 对于文件读写,Node采用的是非阻塞IO
   * __传统IO在读写文件的时候CPU来处理,而代码执行也处于等待中,浪费性能__
@@ -10,29 +16,18 @@
   * 实际应用: webpack/gulp/npm/http-server/json-server
   * 服务器中负责IO读写的中间层服务器(天猫中间层IO服务器)
 
+## NodeJs是什么？
 
+* NodeJs不是一门语言(他使用js编写，我们只能说js是一门语言却不能说node是一门语言)
+* NodeJs不是一个库、一门框架(jquery是一个库，vue是一个框架)
+**那么NodeJS到底是什么呢？**
+1. NodeJs提供的是一个js运行时环境，它移植了chrome V8 引擎,解析和执行代码机制和浏览器js相同
+并且沿用了JavaScript语法、另外扩展了自己需要的功能(具备操作文件的能力,具备服务器的创建和操作能力)
+2. Node使用事件驱动，非阻塞IO模型(异步)来实现轻量与高效
+3. npm是世界上最大开源生态库
+4. node中可以访问process等全局对象，但不具备dom和bom，两者是浏览器独有的内置对象
 
-### NodeJS特点
-
-* 其移植了chrome V8 引擎,解析和执行代码机制和浏览器js相同
-* 其沿用了JavaScript语法、另外扩展了自己需要的功能
-* 总结: nodejs  是一个后端语言 ,  其具备操作文件的能力,  可以具备服务器的创建和操作能力
-  * 其语法是JavaScript语法,代码运行在chrome V8 引擎之上
-
-
-
-
-#### 基本使用
-
-* 官网上下载 node-v-xx.msi 傻瓜式的安装包  一路下一步,就ok
-* 检测是否安装成功 node -v
-* 运行程序   node ./xxx.js
-
-
-### 内置对象介绍
-
----
-
+### Node中的对象
 #### 分类
 
 * 全局对象:  何时何处都能访问
@@ -102,7 +97,7 @@
 * IO
 
   * I :input输入
-  * O:output 输出
+  * O :output 输出
   * 文件的操作就是IO
 
 * 复制文件的过程,  I: 通过计算机,存储文件到剪切板
@@ -177,8 +172,6 @@
 * 1:查找node_modules下的包名文件夹中的main属性(常用)
 * 2:不常用:查找node_modules下的包名.js
 * 3:查找node_modules下的包名文件夹中的index.js(常用)
-
-
 
 ### http核心模块
 ---
