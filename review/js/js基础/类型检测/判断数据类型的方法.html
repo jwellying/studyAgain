@@ -26,6 +26,8 @@
         console.log(typeof obj);    // object
         console.log(typeof arr);    // object
         console.log(typeof fn);     // function
+        console.log(typeof Error);
+        
         // 由此可以看出typeof可以判断number、string、undefined、function以及boolean
         // 但是数组对象和null都是object，故不能区分
 
@@ -52,6 +54,7 @@
         console.log(Object.prototype.toString.call(obj));
         console.log(Object.prototype.toString.call(arr));
         console.log(Object.prototype.toString.call(fn));
+        console.log(Object.prototype.toString.call(Error));
         // 提取内容
         var res = Object.prototype.toString.call(num).replace('[object ','').replace(']','');
         console.log(res);

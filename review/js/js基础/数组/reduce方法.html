@@ -1,0 +1,46 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // reduce的意思：聚合
+        // 使用场景[{id:1,total:2},{id:2,total:3},{id:3,total:5}]
+        // 实现一个total的累加功能
+        let sum = 0;
+        let array = [{id:1,total:2},{id:2,total:3},{id:3,total:5}];
+        for (let i = 0; i < array.length; i++) {
+            let {total} = array[i];
+            console.log(total); 
+            sum += total;
+        }
+        console.log(sum);
+        // 现在我们通过reduce可以轻松实现相同的功能
+        // 数字的累加
+        let a1 = array.reduce((sum,{total})=>{
+            return sum + total;
+        },0)
+        console.log(a1);
+
+        // 字符的累加
+        let array1 = [{id:1,total:2,type:'A'},{id:2,total:3,type:'B'},{id:3,total:5,type:'C'}];
+        let a2 = array1.reduce((str,{id,type})=>{
+            return str + `id:${id}type:${type}`
+        },'')
+        console.log(a2);
+        // 对象的聚合
+        let a3 = array1.reduce((res,{id,total,type})=>{
+            res[id] = {
+                type,
+                total
+            }
+            return res;
+        },{})
+        console.log(a3);
+        
+    </script>
+</body>
+</html>
