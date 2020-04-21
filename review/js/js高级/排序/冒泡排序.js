@@ -22,7 +22,6 @@ function swap(arr, i, j){
 //辅助空间为常数，所以空间复杂度为O(1)
 // 但是冒泡排序的时间复杂度太大
 // 我们可以如何进行优化呢
-// 通过标志位的方式让大部分的情况的时间复杂度变为o(n)
 function bubbleSort(array){
     for (let i = 0; i < array.length-1; i++) {
         let flag = false;
@@ -38,3 +37,4 @@ function bubbleSort(array){
     }
     
 }
+

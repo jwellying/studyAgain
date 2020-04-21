@@ -49,3 +49,37 @@ vue: vue的响应式使用的是Object.definePropertyapi，并且由于在getter
 # 很多人都说vue不适合做大型的项目
 vue1.0时代每一个数据绑定都会对应一个可观察者对象，放入对应属性的观察者对象中，当数据绑定十分多的时候，可观察对象就会变得十分多，导致项目变得十分笨重；
 但是在后来的改进中vue引入了虚拟dom，每一个组件会挂载一个观察者对象，当组件中发生变化，虽然不能知道到底是那一部分发生了变化，但是由于虚拟dom的引入，我们可以使用diff算法进行比对，发现组件中的那个值发生变化，将改变转换成dom操作去更新视图
+
+# vue Vs react
+1. vue采用模板搭建应用
+like this
+```js
+<template>
+  
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>
+```
+2. react它要求开发者借助JSX在JavaScript中创建DOM
+like this
+```js
+import React, { Component } from 'react'
+
+export default class react extends Component {
+    render() {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
+}
+```

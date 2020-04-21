@@ -24,3 +24,5 @@ var curry = function (fn) {
 
 var addCurry = curry(add, 1, 2);
 addCurry() 
+
+

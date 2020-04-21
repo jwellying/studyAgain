@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /**
+         * @param {number[]} height
+         * @return {number}
+         */
+        // var maxArea = function(height) {
+        //     // height为一个高度数组
+        //     // 解题思路:使用双指针的方式,首先low指向头,high指向尾,使用value记录最大水量
+        //     // 最大水量的计算 = 左右边界最小值*宽度
+        //     // 所以首先要比较左右高低
+        //     let len = height.length;
+        //     let low = 0;
+        //     let high = len-1;
+        //     let value = Math.min(height[low],height[high])*(high-low);
+        //     let res = [];
+        //     res.push(value);
+        //     // console.log(res);
+            
+        //     while(low<high&&height[low]<height[low+1]){
+        //         low++;
+        //         value = Math.min(height[low],height[high])*(high-low);
+        //         res.push(value); 
+        //     }
+        //     while(low<high&&height[high]<height[high-1]){
+        //         high--;
+        //         value = Math.min(height[low],height[high])*(high-low);
+        //         res.push(value); 
+        //     }
+        //     let max = 0;
+        //     for(let i in res){ 
+        //         if(res[i]>max){
+        //             max = res[i]
+        //         }
+        //     }
+        //     console.log(res);
+            
+        //     return max;
+        // };
+        // let arr = [1,3,2,5,25,24,5];
+
+        // console.log(maxArea(arr));
+        // 第一版挑战失败
+        // 失败原因：我只从比较相邻的大小的角度出发，欠缺完整考虑
+        // 第二版挑战
+        var maxArea = function(height) {
+            // height为一个高度数组
+            // 解题思路:使用双指针的方式,首先low指向头,high指向尾,使用value记录最大水量
+            // 最大水量的计算 = 左右边界最小值*宽度
+            // 所以首先要比较左右高低
+            let len = height.length;
+            let low = 0;
+            let high = len-1;
+            let value = Math.min(height[low],height[high])*(high-low);
+            let res = [];
+            res.push(value);
+            // console.log(res);
+            while(low<high){
+                if(height[low]<height[high]){
+                    low++;
+                    value = Math.min(height[low],height[high])*(high-low);
+                    res.push(value);
+                }else{
+                    high--;
+                    value = Math.min(height[low],height[high])*(high-low);
+                    res.push(value); 
+                }
+            }
+            let max = 0;
+            for(let i in res){ 
+                if(res[i]>max){
+                    max = res[i]
+                }
+            }
+            console.log(res);
+            
+            return max;
+        };
+        let arr = [1,3,2,5,25,24,5];
+
+        console.log(maxArea(arr));
+    </script>
+</body>
+</html>
