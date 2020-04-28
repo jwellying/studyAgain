@@ -1,0 +1,180 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 浮动法 -->
+    <!-- <style >
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .left{
+            width: 200px;
+            height: 500px;
+            float: left;
+            background-color: yellow;
+        }
+        .right{
+            width: 200px;
+            height: 500px;
+            float: right;
+            background-color: blue;
+        }
+        .middle{
+            /* width: auto; */
+            height: 500px;
+            margin: 0 200px 0 200px;
+            background-color: red;
+            
+        }
+    </style> -->
+    <!-- BFC方法 -->
+    <!-- <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .left{
+            width: 200px;
+            height: 500px;
+            float: left;
+            margin-right: 10px;
+            background-color: yellow;
+        }
+        .right{
+            width: 200px;
+            height: 500px;
+            float: right;
+            margin-left: 10px;
+            background-color: blue;
+        }
+        .middle{
+            /* width: auto; */
+            height: 500px;
+            overflow: hidden;
+            background-color: red;
+            
+        }
+    </style> -->
+    <!-- 双飞翼的原理，实际上就是通过margin的负值将元素浮上去，同时中间元素清除浮动 -->
+    <!-- <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .left{
+            width: 200px;
+            height: 500px;
+            float: left;
+            margin-left: -100%;
+            background-color: yellow;
+        }
+        .right{
+            width: 200px;
+            height: 500px;
+            float: right;
+            margin-left: -200px;
+            background-color: blue;
+        }
+        .middle{
+            height: 500px;
+            background-color: red;
+            margin: 0 220px 0 220px;
+        }
+        .content{
+            float: left;
+            width: 100%;
+        }
+        .middle::after{
+            content:'';
+            display: block;
+            clear: both;
+            zoom:1;
+        }
+    </style> -->
+    <!-- 圣杯布局,原理大致同 -->
+    <!-- <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            margin-left: 220px;
+            margin-right: 220px;
+        }
+        .middle{
+            background-color: blue;
+            height: 500px;
+            float: left;
+            width: 100%;
+        }
+        .left{
+            float: left;
+            width: 200px;
+            height: 500px;
+            background-color: yellow;
+            position: relative;
+            margin-left: -100%;
+            left:-220px;
+        }
+        .right{
+            float: left;
+            width: 200px;
+            height: 500px;
+            background-color: yellow;
+            position: relative;
+            margin-left: -200px;
+            right:-220px;
+        }
+        
+    </style> -->
+    <!-- flex -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+        }
+        .middle{
+            flex-grow: 1;
+            height: 500px;
+            background-color: red;
+        }
+        .left{
+            order:-1;
+            flex:0 1 200px;
+            height: 500px;
+            width: 200px;
+            background-color: blue;
+            margin-right: 20px;
+        }
+        .right{
+            order:1;
+            flex: 0 1 200px;
+            height: 500px;
+            width: 200px;
+            margin-left: 20px;
+            background-color: blue;
+        }
+    </style>
+    <div>
+        <!-- <div class="content">
+            <div class="middle"></div>
+        </div>
+        <div class="left"></div>
+        <div class="right"></div> -->
+        <!-- <div class="middle"></div> -->
+         <div class="container">
+            <div class="middle"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+        
+    </div>
+</head>
+<body>
+</body>
+</html>

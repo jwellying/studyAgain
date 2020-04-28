@@ -25,3 +25,8 @@ top	            返回最顶层的父窗口。
 **存储**
 localStorage	在浏览器中存储 key/value 对。没有过期时间。
 sessionStorage	在浏览器中存储 key/value 对。 在关闭窗口或标签页之后将会删除这些数据。
+
+## window.onload和window.onready的区别
++ onready在onload之前被执行
++ onready在页面解析完成之后就会被执行，onload只有在页面所有资源都下载完成后执行
++ onload只会执行最后一个，而onready会执行多个

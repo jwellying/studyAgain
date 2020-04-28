@@ -87,6 +87,9 @@
         };
     </script>
     <script>
+        // event的实现
+        // 就是一辆存储事件的车（存储的方式通过map数据结构）
+        // 当我们需要emit的时候，首先会去通过map的get方法去
         class Event{
             constructor(){
                 this._events = this._events || new Map();

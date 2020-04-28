@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(...[1,2,3]);
+        let number = [1,2,3];
+        console.log(...number);
+        
+        function add(x,y){
+            return x+y;
+        }
+        console.log(add(...number));
+        // 展开运算符的使用场景
+        // 代替apply进行参数传递与调用
+        function sub(x,y){
+            return x-y;
+        }
+        let n = [5,2]
+        // Es5：apply的用法
+        console.log(sub.apply(null,n));
+        console.log(sub(...n));
+        // rest参数和展开运算符之间存在某种关系
+        // 展开运算符将数组展开为参数，传递给函数执行
+        // rest参数将参数序列转换为类数组对象，在函数内部可以使用操作
+        
+        
+    </script>
+</body>
+</html>
